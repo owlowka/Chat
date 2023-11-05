@@ -1,0 +1,9 @@
+﻿namespace Chat.DataAccess.Entities
+{
+    public class User : EntityBase
+    {
+        public ICollection<Conversation> Conversations { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+}

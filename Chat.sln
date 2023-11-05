@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.WebAPI", "src\Chat.WebAPI\Chat.WebAPI.csproj", "{1FFEA4D3-2095-4FA6-9149-DF0E3AFB9A00}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.DataAccess", "Chat.DataAccess\Chat.DataAccess.csproj", "{D9E09080-B130-4CC9-90D8-00FD69B83E93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,15 @@ Global
 		{1FFEA4D3-2095-4FA6-9149-DF0E3AFB9A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FFEA4D3-2095-4FA6-9149-DF0E3AFB9A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FFEA4D3-2095-4FA6-9149-DF0E3AFB9A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9E09080-B130-4CC9-90D8-00FD69B83E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9E09080-B130-4CC9-90D8-00FD69B83E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9E09080-B130-4CC9-90D8-00FD69B83E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9E09080-B130-4CC9-90D8-00FD69B83E93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFDB3101-0652-47A8-BA2F-E80CA8A7EB3C}
 	EndGlobalSection
 EndGlobal
