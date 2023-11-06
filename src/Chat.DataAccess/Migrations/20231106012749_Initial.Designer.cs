@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chat.DataAccess.Migrations
 {
     [DbContext(typeof(ChatStorageContext))]
-    [Migration("20231105221339_Initial")]
+    [Migration("20231106012749_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -22,34 +22,34 @@ namespace Chat.DataAccess.Migrations
 
             modelBuilder.Entity("Chat.DataAccess.Entities.Conversation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Conversation");
+                    b.ToTable("Conversations");
                 });
 
             modelBuilder.Entity("Chat.DataAccess.Entities.Message", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ConversationId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("ConversationId")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SenderId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("SenderId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -62,9 +62,9 @@ namespace Chat.DataAccess.Migrations
 
             modelBuilder.Entity("Chat.DataAccess.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
@@ -75,16 +75,16 @@ namespace Chat.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ConversationUser", b =>
                 {
-                    b.Property<int>("ConversationsId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("ConversationsId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("UsersId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ConversationsId", "UsersId");
 

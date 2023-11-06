@@ -8,10 +8,11 @@ WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ChatStorageContext>(options =>
-    options.UseSqlite(
-        builder
-           .Configuration
-           .GetConnectionString("ChatDatabase")));
+    options
+        .UseSqlite(
+            builder
+               .Configuration
+               .GetConnectionString("ChatDatabase")));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
