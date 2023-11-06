@@ -6,8 +6,13 @@ WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
 builder.Services.AddDbContext<ChatStorageContext>(options =>
-    options.UseSqlite("Data Source = chat.db"));
+    options.UseSqlite(
+        builder
+           .Configuration
+           .GetConnectionString("ChatDatabase")));
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 
