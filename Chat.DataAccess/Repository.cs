@@ -1,33 +1,59 @@
 ﻿using Chat.DataAccess.Entities;
 
+using Microsoft.EntityFrameworkCore;
 
 namespace Chat.DataAccess
 {
-    public class Repository<T> : IRepository<T> where T : EntityBase
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
     {
-        public void Delete(Guid id)
+        private readonly ChatStorageContext _dbContext;
+        private readonly DbSet<TEntity> _dbSet;
+
+        public Repository(ChatStorageContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _dbSet = dbContext.Set<TEntity>();
         }
 
-        public T Get(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            TEntity? entity = Get(id);
+
+            if (entity is null)
+            {
+                return;
+            }
+
+            _dbSet.Remove(entity);
+
+            await SaveAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public TEntity? Get(Guid id)
         {
-            throw new NotImplementedException();
+            return _dbSet.Find(id);
         }
 
-        public void Insert(T entity)
+        public IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbSet;
         }
 
-        public void Update(T entity)
+        public async Task Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(entity);
+            await SaveAsync();
+        }
+
+        public async Task Update(TEntity entity)
+        {
+            _dbSet.Update(entity);
+            await SaveAsync();
+        }
+
+        private async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

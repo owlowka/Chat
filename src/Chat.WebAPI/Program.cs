@@ -1,7 +1,14 @@
+using Chat.DataAccess;
+
+using Microsoft.EntityFrameworkCore;
+
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddDbContext<ChatStorageContext>(options =>
+    options.UseSqlite("Data Source = chat.db"));
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

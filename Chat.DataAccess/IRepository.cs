@@ -2,13 +2,13 @@
 
 namespace Chat.DataAccess
 {
-    public interface IRepository<T> where T : EntityBase
+    public interface IRepository<TEntity> where TEntity : EntityBase
     {
-        IEnumerable<T> GetAll();
-        T Get(Guid id);
-        void Insert(T entity);
-        void Update(T entity);
-        void Delete(Guid id);
+        IEnumerable<TEntity> GetAll();
+        TEntity? Get(Guid id);
+        Task Insert(TEntity entity);
+        Task Update(TEntity entity);
+        Task Delete(Guid id);
 
     }
 }

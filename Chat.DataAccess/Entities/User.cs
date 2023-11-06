@@ -2,8 +2,8 @@
 {
     public class User : EntityBase
     {
-        public ICollection<Conversation> Conversations { get; set; }
-        public string Name { get; set; }
+        public required ICollection<Conversation> Conversations { get; set; }
+        public required string Name { get; set; }
         public int Age { get; set; }
     }
 }

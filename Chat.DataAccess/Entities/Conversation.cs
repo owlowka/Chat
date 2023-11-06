@@ -3,7 +3,7 @@ namespace Chat.DataAccess.Entities
 {
     public class Conversation : EntityBase
     {
-        public ICollection<Message> Messages { get; set; }
-        public ICollection<User> Users { get; set; }
+        public required ICollection<Message> Messages { get; init; }
+        public required ICollection<User> Users { get; init; }
     }
 }
