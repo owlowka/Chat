@@ -36,17 +36,21 @@ namespace Chat.DataAccess
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbSet;
+            return _dbSet.ToList();
         }
 
         public async Task Insert(TEntity entity)
         {
+            ArgumentNullException.ThrowIfNull(entity);
+
             _dbSet.Add(entity);
             await SaveAsync();
         }
 
         public async Task Update(TEntity entity)
         {
+            ArgumentNullException.ThrowIfNull(entity);
+
             _dbSet.Update(entity);
             await SaveAsync();
         }

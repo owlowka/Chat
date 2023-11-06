@@ -8,6 +8,7 @@ WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ChatStorageContext>(options =>
     options.UseSqlite("Data Source = chat.db"));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
