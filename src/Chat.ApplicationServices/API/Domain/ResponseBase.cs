@@ -1,4 +1,5 @@
-﻿namespace Chat.ApplicationServices.API.Domain
+﻿
+namespace Chat.ApplicationServices.API.Domain
 {
     public class ResponseBase<TEntity>
     {

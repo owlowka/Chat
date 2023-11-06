@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.WebAPI", "src\Chat.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.DataAccess", "src\Chat.DataAccess\Chat.DataAccess.csproj", "{E2B2E7E0-CBD9-4D03-B22C-172A7D703276}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat.ApplicationServices", "src\Chat.ApplicationServices\Chat.ApplicationServices.csproj", "{24B2B924-4966-46D6-A44A-79F372A03213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.ApplicationServices", "src\Chat.ApplicationServices\Chat.ApplicationServices.csproj", "{24B2B924-4966-46D6-A44A-79F372A03213}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

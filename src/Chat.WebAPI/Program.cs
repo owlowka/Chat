@@ -1,10 +1,14 @@
+using Chat.ApplicationServices.API.Domain;
 using Chat.DataAccess;
-
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblyContaining(typeof(ResponseBase<>)));
+
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ChatStorageContext>(options =>

@@ -7,11 +7,11 @@ namespace Chat.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IRepository<User> _userRepository;
 
-        public UserController(IRepository<User> userRepository)
+        public UsersController(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }
