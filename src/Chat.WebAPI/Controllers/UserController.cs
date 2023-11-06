@@ -18,7 +18,13 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("")]//https://localhost:80/user/
-        public IEnumerable<User> GetAllUsers() => _userRepository.GetAll();
+        public IEnumerable<User> GetAllUsers()
+            => _userRepository.GetAll();
+
+        [HttpGet]
+        [Route("{userId}")]//https://localhost:80/user/userId
+        public User? GetUserById(Guid userID)
+            => _userRepository.Get(userID);
     }
 
 
