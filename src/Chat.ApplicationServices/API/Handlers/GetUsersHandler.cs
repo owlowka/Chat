@@ -1,4 +1,6 @@
-﻿using Chat.ApplicationServices.API.Domain;
+﻿using AutoMapper;
+
+using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.Domain.Models;
 using Chat.DataAccess;
 
@@ -11,10 +13,12 @@ namespace Chat.ApplicationServices.API.Handlers
     public class GetUsersHandler : IRequestHandler<GetUsersRequest, GetUsersResponse>
     {
         private readonly IRepository<DbUser> _userRepository;
+        private readonly IMapper _mapper;
 
-        public GetUsersHandler(IRepository<DbUser> userRepository)
+        public GetUsersHandler(IRepository<DbUser> userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
@@ -22,15 +26,12 @@ namespace Chat.ApplicationServices.API.Handlers
             //await _userRepository.Insert(new DbUser { Name = "qwe", Age = 22 });
 
             IEnumerable<DbUser> users = _userRepository.GetAll();
-            IEnumerable<User> domainUsers = users.Select(x => new User()
-            {
-                Id = x.Id,
-                Name = x.Name
-            });
+
+            List<User>? mappedUser = _mapper.Map<List<User>>(users);
 
             var response = new GetUsersResponse()
             {
-                Data = domainUsers.ToList()
+                Data = mappedUser
             };
 
             return response;

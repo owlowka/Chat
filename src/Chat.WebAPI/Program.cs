@@ -1,10 +1,13 @@
 using Chat.ApplicationServices.API.Domain;
+using Chat.ApplicationServices.API.Mappings;
 using Chat.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddAutoMapper(typeof(UsersProfile).Assembly);
 
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining(typeof(ResponseBase<>)));
