@@ -2,12 +2,10 @@
 
 using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.Domain.Models;
-using Chat.DataAccess;
+using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
 
 using MediatR;
-
-using DbUser = Chat.DataAccess.Entities.User;
 
 namespace Chat.ApplicationServices.API.Handlers
 {

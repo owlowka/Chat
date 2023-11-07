@@ -1,6 +1,6 @@
 ﻿using Chat.DataAccess.CQRS.Queries;
 
-namespace Chat.DataAccess
+namespace Chat.DataAccess.CQRS
 {
     public class QueryExecutor : IQueryExecutor
     {

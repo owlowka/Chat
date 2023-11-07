@@ -1,11 +1,14 @@
 using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.Mappings;
 using Chat.DataAccess;
+using Chat.DataAccess.CQRS;
+
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
 
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 
