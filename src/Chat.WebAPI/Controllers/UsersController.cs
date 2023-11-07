@@ -1,31 +1,37 @@
-﻿using Chat.DataAccess;
+﻿using Chat.ApplicationServices.API.Domain;
+using Chat.DataAccess;
 using Chat.DataAccess.Entities;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IMediator _mediator;
 
-        public UsersController(IRepository<User> userRepository)
+        public UsersController(IMediator mediator)
         {
-            _userRepository = userRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        [Route("")]//https://localhost:80/user/
-        public IEnumerable<User> GetAllUsers()
-            => _userRepository.GetAll();
+        [Route("")]
+        public async Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
 
-        [HttpGet]
-        [Route("{userId}")]//https://localhost:80/user/userId
-        public User? GetUserById(Guid userID)
-            => _userRepository.Get(userID);
+        //[HttpGet]
+        //[Route("{userId}")]//https://localhost:80/user/userId
+        //public User? GetUserById(Guid userID)
+        //    => _userRepository.Get(userID);
     }
-
 
 }
