@@ -25,7 +25,7 @@ namespace Chat.ApplicationServices.API.Handlers
         {
             //await _userRepository.Insert(new DbUser { Name = "qwe", Age = 22 });
 
-            IEnumerable<DbUser> users = _userRepository.GetAll();
+            IEnumerable<DbUser> users = await _userRepository.GetAll();
 
             List<User>? mappedUser = _mapper.Map<List<User>>(users);
 

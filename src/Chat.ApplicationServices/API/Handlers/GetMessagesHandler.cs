@@ -18,7 +18,7 @@ namespace Chat.ApplicationServices.API.Handlers
 
         public async Task<GetMessagesResponse> Handle(GetMessagesRequest request, CancellationToken cancellationToken)
         {
-            IEnumerable<DbMessage> messages = _messagesRepository.GetAll();
+            IEnumerable<DbMessage> messages = await _messagesRepository.GetAll();
             IEnumerable<Message> domainMessages = messages.Select(x => new Message()
             {
                 Id = x.Id,

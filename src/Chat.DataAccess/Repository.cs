@@ -17,7 +17,7 @@ namespace Chat.DataAccess
 
         public async Task Delete(Guid id)
         {
-            TEntity? entity = Get(id);
+            TEntity? entity = await Get(id);
 
             if (entity is null)
             {
@@ -29,14 +29,14 @@ namespace Chat.DataAccess
             await SaveAsync();
         }
 
-        public TEntity? Get(Guid id)
+        public async Task<TEntity?> Get(Guid id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return _dbSet.ToList();
+            return await _dbSet.ToListAsync();
         }
 
         public async Task Insert(TEntity entity)
