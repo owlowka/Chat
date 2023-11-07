@@ -7,6 +7,8 @@ WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+
 builder.Services.AddAutoMapper(typeof(UsersProfile).Assembly);
 
 builder.Services.AddMediatR(cfg =>
