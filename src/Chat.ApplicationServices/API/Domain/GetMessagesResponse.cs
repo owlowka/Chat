@@ -1,7 +1,4 @@
-﻿
-using Chat.ApplicationServices.API.Domain.Models;
-
-using MediatR;
+﻿using Chat.ApplicationServices.API.Domain.Models;
 
 namespace Chat.ApplicationServices.API.Domain
 {

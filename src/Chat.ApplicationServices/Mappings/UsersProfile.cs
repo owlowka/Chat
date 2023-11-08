@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 
-using Chat.ApplicationServices.API.Domain.Models;
+using Chat.ApplicationServices.API.Domain;
 
-using DbUser = Chat.DataAccess.Entities.User;
-
-namespace Chat.ApplicationServices.API.Mappings
+namespace Chat.ApplicationServices.Mappings
 {
     public class UsersProfile : Profile
     {
         public UsersProfile()
         {
-            CreateMap<DbUser, User>()
+            CreateMap<AddUserRequest, DbUser>()
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
+
+            CreateMap<DbUser, DomainUser>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
         }

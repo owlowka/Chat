@@ -1,5 +1,5 @@
 using Chat.ApplicationServices.API.Domain;
-using Chat.ApplicationServices.API.Mappings;
+using Chat.ApplicationServices.Mappings;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
 

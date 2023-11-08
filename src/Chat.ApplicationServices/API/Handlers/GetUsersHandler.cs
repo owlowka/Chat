@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 
 using Chat.ApplicationServices.API.Domain;
-using Chat.ApplicationServices.API.Domain.Models;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
+using Chat.DataAccess.Entities;
 
 using MediatR;
+
 
 namespace Chat.ApplicationServices.API.Handlers
 {
@@ -16,18 +17,17 @@ namespace Chat.ApplicationServices.API.Handlers
 
         public GetUsersHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-
             _mapper = mapper;
             _queryExecutor = queryExecutor;
         }
 
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUsersQuery();
-            var users = await _queryExecutor.Execute(query);
-            List<User>? mappedUser = _mapper.Map<List<User>>(users);
+            GetUsersQuery? query = new GetUsersQuery();
+            List<User>? users = await _queryExecutor.Execute(query);
+            List<DomainUser>? mappedUser = _mapper.Map<List<DomainUser>>(users);
 
-            var response = new GetUsersResponse()
+            GetUsersResponse? response = new GetUsersResponse()
             {
                 Data = mappedUser
             };

@@ -24,7 +24,7 @@ namespace Chat.WebAPI.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
         {
-            var response = await _mediator.Send(request);
+            GetUsersResponse? response = await _mediator.Send(request);
             return Ok(response);
         }
 

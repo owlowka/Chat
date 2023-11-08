@@ -1,6 +1,7 @@
 ﻿using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.Domain.Models;
 using Chat.DataAccess;
+
 using MediatR;
 
 using DbMessage = Chat.DataAccess.Entities.Message;
@@ -26,7 +27,7 @@ namespace Chat.ApplicationServices.API.Handlers
                 Content = x.Content
             });
 
-            var response = new GetMessagesResponse()
+            GetMessagesResponse? response = new GetMessagesResponse()
             {
                 Data = domainMessages.ToList()
             };
