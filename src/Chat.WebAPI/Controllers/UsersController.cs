@@ -1,6 +1,4 @@
 ﻿using Chat.ApplicationServices.API.Domain;
-using Chat.DataAccess;
-using Chat.DataAccess.Entities;
 
 using MediatR;
 
@@ -32,6 +30,14 @@ namespace Chat.WebAPI.Controllers
         //[Route("{userId}")]//https://localhost:80/user/userId
         //public User? GetUserById(Guid userID)
         //    => _userRepository.Get(userID);
+
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> AddUser([FromBody] AddUserRequest request)
+        {
+            AddUserResponse response = await _mediator.Send(request);
+            return Ok(response);
+        }
     }
 
 }

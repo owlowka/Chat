@@ -4,8 +4,6 @@ using Chat.DataAccess;
 
 using MediatR;
 
-using DbMessage = Chat.DataAccess.Entities.Message;
-
 namespace Chat.ApplicationServices.API.Handlers
 {
     public class GetMessagesHandler : IRequestHandler<GetMessagesRequest, GetMessagesResponse>
