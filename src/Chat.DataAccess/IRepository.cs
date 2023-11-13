@@ -2,7 +2,8 @@
 
 namespace Chat.DataAccess
 {
-    public interface IRepository<TEntity> where TEntity : EntityBase
+    public interface IRepository<TEntity>
+        where TEntity : EntityBase
     {
         Task<IEnumerable<TEntity>> GetAll();
         Task<TEntity?> Get(Guid id);

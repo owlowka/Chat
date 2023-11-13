@@ -26,11 +26,6 @@ namespace Chat.WebAPI.Controllers
             return Ok(response);
         }
 
-        //[HttpGet]
-        //[Route("{userId}")]//https://localhost:80/user/userId
-        //public User? GetUserById(Guid userID)
-        //    => _userRepository.Get(userID);
-
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddUser([FromBody] AddUserRequest request)
@@ -38,6 +33,18 @@ namespace Chat.WebAPI.Controllers
             AddUserResponse response = await _mediator.Send(request);
             return Ok(response);
         }
-    }
 
+        [HttpGet]
+        [Route("{userId}")]
+        public async Task<IActionResult> GetUserById([FromRoute] Guid userId)
+        {
+            var request = new GetUserByIdRequest()
+            {
+                Id = userId
+            };
+
+            GetUserByIdResponse? response = await _mediator.Send(request);
+            return Ok(response);
+        }
+    }
 }

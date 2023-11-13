@@ -3,8 +3,6 @@
 using Chat.ApplicationServices.API.Domain;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Commands;
-using Chat.DataAccess.Entities;
-using Chat.ApplicationServices.API.Domain.Models;
 
 using MediatR;
 
