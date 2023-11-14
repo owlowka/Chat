@@ -1,13 +1,19 @@
 using Chat.ApplicationServices.API.Domain;
+using Chat.ApplicationServices.API.Validators;
 using Chat.ApplicationServices.Mappings;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
+
+using FluentValidation;
 
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddValidatorsFromAssemblyContaining<AddUserRequestValidator>();
+
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
 
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
