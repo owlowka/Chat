@@ -5,13 +5,15 @@ using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
 
 using FluentValidation;
+using FluentValidation.AspNetCore;
 
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<AddUserRequestValidator>();
 
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
