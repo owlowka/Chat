@@ -8,21 +8,19 @@ namespace Chat.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MessagesController : ControllerBase
+    public class MessagesController : ApiControllerBase
     {
-        private readonly IMediator _mediator;
-
         public MessagesController(IMediator mediator)
+            : base(mediator)
         {
-            _mediator = mediator;
         }
 
-        [HttpGet]
-        [Route("")]
-        public async Task<IActionResult> GetAllMessages([FromQuery] GetMessagesRequest request)
-        {
-            var response = await _mediator.Send(request);
-            return Ok(response);
-        }
+        //[HttpGet]
+        //[Route("")]
+        //public async Task<IActionResult> GetAllMessages([FromQuery] GetMessagesRequest request)
+        //{
+        //    var response = await _mediator.Send(request);
+        //    return Ok(response);
+        //}
     }
 }
