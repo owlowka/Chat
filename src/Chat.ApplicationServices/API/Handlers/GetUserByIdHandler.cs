@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using Chat.ApplicationServices.API.Domain;
+using Chat.ApplicationServices.API.ErrorHandling;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
 
@@ -24,7 +25,15 @@ namespace Chat.ApplicationServices.API.Handlers
             {
                 Id = request.Id
             };
+
             var user = await _queryExecutor.Execute(query);
+            if (user == null)
+            {
+                return new GetUserByIdResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
             var mappedUser = _mapper.Map<DomainUser>(user);
             var response = new GetUserByIdResponse()
             {

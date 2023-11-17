@@ -10,7 +10,9 @@ namespace Chat.ApplicationServices.API.Validators
 
         public AddUserRequestValidator()
         {
-            RuleFor(x => x.Name).InjectValidator().MaximumLength(10).WithMessage(" Oj zły zakres zły");
+            RuleFor(x => x.Name).InjectValidator()
+                .MaximumLength(10)
+                .WithMessage(" Oj zły zakres zły");
         }
     }
 }

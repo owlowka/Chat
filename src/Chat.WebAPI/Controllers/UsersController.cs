@@ -31,17 +31,16 @@ namespace Chat.WebAPI.Controllers
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
         }
 
-        //[HttpGet]
-        //[Route("{userId}")]
-        //public async Task<IActionResult> GetUserById([FromRoute] Guid userId)
-        //{
-        //    var request = new GetUserByIdRequest()
-        //    {
-        //        Id = userId
-        //    };
+        [HttpGet]
+        [Route("{userId}")]
+        public async Task<IActionResult> GetUserById([FromRoute] Guid userId)
+        {
+            var request = new GetUserByIdRequest()
+            {
+                Id = userId
+            };
 
-        //    GetUserByIdResponse? response = await _mediator.Send(request);
-        //    return Ok(response);
-        //}
+            return HandleRequest<AddUserRequest, AddUserResponse>(request);
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace Chat.WebAPI.Controllers
                 case ErrorType.Unauthorized:
                     return HttpStatusCode.Unauthorized;
 
-                case ErrorType.RequestToolLarge:
+                case ErrorType.RequestTooLarge:
                     return HttpStatusCode.RequestEntityTooLarge;
 
                 case ErrorType.UnsupportedMethod:

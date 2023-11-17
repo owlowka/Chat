@@ -1,5 +1,4 @@
-﻿
-namespace Chat.ApplicationServices.API.ErrorHandling
+﻿namespace Chat.ApplicationServices.API.ErrorHandling
 {
     public static class ErrorType
     {
@@ -18,7 +17,7 @@ namespace Chat.ApplicationServices.API.ErrorHandling
 
         public const string UnsupportedMethod = "Na Explorerze{randomeBrowserName}? Serio?";
 
-        public const string RequestToolLarge = "Widzę, że debata w TVP się sposobała?";
+        public const string RequestTooLarge = "Widzę, że debata w TVP się spodobała?";
 
         public const string TooManyRequests = "Hola Hola kolejka jest";
 
