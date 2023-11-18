@@ -24,7 +24,7 @@ namespace Chat.ApplicationServices.API.Handlers
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
             GetUsersQuery? query = new GetUsersQuery();
-            List<User>? users = await _queryExecutor.Execute(query);
+            List<DbUser>? users = await _queryExecutor.Execute(query);
             List<DomainUser>? mappedUser = _mapper.Map<List<DomainUser>>(users);
 
             GetUsersResponse? response = new GetUsersResponse()

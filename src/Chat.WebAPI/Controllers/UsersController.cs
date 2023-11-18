@@ -16,13 +16,12 @@ namespace Chat.WebAPI.Controllers
         {
         }
 
-        //[HttpGet]
-        //[Route("")]
-        //public async Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
-        //{
-        //    GetUsersResponse? response = await _mediator.Send(request);
-        //    return Ok(response);
-        //}
+        [HttpGet]
+        [Route("")]
+        public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
+        {
+            return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
+        }
 
         [HttpPost]
         [Route("")]
@@ -33,14 +32,14 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("{userId}")]
-        public async Task<IActionResult> GetUserById([FromRoute] Guid userId)
+        public Task<IActionResult> GetUserById([FromRoute] Guid userId)
         {
             var request = new GetUserByIdRequest()
             {
                 Id = userId
             };
 
-            return HandleRequest<AddUserRequest, AddUserResponse>(request);
+            return HandleRequest<GetUserByIdRequest, GetUserByIdResponse>(request);
         }
     }
 }

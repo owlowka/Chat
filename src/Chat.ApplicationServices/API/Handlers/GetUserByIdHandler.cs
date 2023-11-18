@@ -21,7 +21,7 @@ namespace Chat.ApplicationServices.API.Handlers
         }
         public async Task<GetUserByIdResponse> Handle(GetUserByIdRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUserQuery()
+            var query = new GetUserByIdQuery()
             {
                 Id = request.Id
             };
