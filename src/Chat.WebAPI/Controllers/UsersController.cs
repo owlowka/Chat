@@ -11,15 +11,20 @@ namespace Chat.WebAPI.Controllers
     [Route("[controller]")]
     public class UsersController : ApiControllerBase
     {
-        public UsersController(IMediator mediator)
+        private readonly ILogger<UsersController> _logger;
+
+        public UsersController(IMediator mediator, ILogger<UsersController> logger)
             : base(mediator)
         {
+            _logger = logger;
+            _logger.LogDebug(1, "Nlog injected into UsersController");
         }
 
         [HttpGet]
         [Route("")]
         public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
         {
+            _logger.LogInformation("Hello, this is the GetAllUsers!");
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 

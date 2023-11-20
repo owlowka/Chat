@@ -15,12 +15,11 @@ namespace Chat.WebAPI.Controllers
         {
         }
 
-        //[HttpGet]
-        //[Route("")]
-        //public async Task<IActionResult> GetAllMessages([FromQuery] GetMessagesRequest request)
-        //{
-        //    var response = await _mediator.Send(request);
-        //    return Ok(response);
-        //}
+        [HttpGet]
+        [Route("")]
+        public Task<IActionResult> GetAllMessages([FromQuery] GetMessagesRequest request)
+        {
+            return HandleRequest<GetMessagesRequest, GetMessagesResponse>(request);
+        }
     }
 }
