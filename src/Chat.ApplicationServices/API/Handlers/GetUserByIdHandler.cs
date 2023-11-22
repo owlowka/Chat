@@ -2,6 +2,8 @@
 
 using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.ErrorHandling;
+using Chat.ApplicationServices.Components.OpenWeather;
+using Chat.ApplicationServices.Components.OpenWeather.Models;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
 
@@ -13,11 +15,16 @@ namespace Chat.ApplicationServices.API.Handlers
     {
         private readonly IMapper _mapper;
         private readonly IQueryExecutor _queryExecutor;
+        private readonly IOpenWeatherClient _openWeatherConnector;
 
-        public GetUserByIdHandler(IMapper mapper, IQueryExecutor queryExecutor)
+        public GetUserByIdHandler(
+            IMapper mapper,
+            IQueryExecutor queryExecutor,
+            IOpenWeatherClient openWeatherConnector)
         {
             _mapper = mapper;
             _queryExecutor = queryExecutor;
+            _openWeatherConnector = openWeatherConnector;
         }
         public async Task<GetUserByIdResponse> Handle(GetUserByIdRequest request, CancellationToken cancellationToken)
         {
@@ -26,7 +33,7 @@ namespace Chat.ApplicationServices.API.Handlers
                 Id = request.Id
             };
 
-            var user = await _queryExecutor.Execute(query);
+            DbUser user = await _queryExecutor.Execute(query);
             if (user == null)
             {
                 return new GetUserByIdResponse()
@@ -34,10 +41,15 @@ namespace Chat.ApplicationServices.API.Handlers
                     Error = new ErrorModel(ErrorType.NotFound)
                 };
             }
-            var mappedUser = _mapper.Map<DomainUser>(user);
+            DomainUser mappedUser = _mapper.Map<DomainUser>(user);
+
+            OpenWeatherResponse? weatherResponse = await _openWeatherConnector.Get("Wroclaw");
+            DomainWeather weather = _mapper.Map<DomainWeather>(weatherResponse);
+
             var response = new GetUserByIdResponse()
             {
-                Data = mappedUser
+                Data = mappedUser,
+                Weather = weather
             };
             return response;
         }

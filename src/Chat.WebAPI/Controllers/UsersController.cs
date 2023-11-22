@@ -13,7 +13,9 @@ namespace Chat.WebAPI.Controllers
     {
         private readonly ILogger<UsersController> _logger;
 
-        public UsersController(IMediator mediator, ILogger<UsersController> logger)
+        public UsersController(
+            IMediator mediator,
+            ILogger<UsersController> logger)
             : base(mediator)
         {
             _logger = logger;
@@ -30,6 +32,7 @@ namespace Chat.WebAPI.Controllers
 
         [HttpPost]
         [Route("")]
+
         public Task<IActionResult> AddUser([FromBody] AddUserRequest request)
         {
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
@@ -39,6 +42,7 @@ namespace Chat.WebAPI.Controllers
         [Route("{userId}")]
         public Task<IActionResult> GetUserById([FromRoute] Guid userId)
         {
+
             var request = new GetUserByIdRequest()
             {
                 Id = userId
