@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 
 using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.ErrorHandling;
@@ -12,13 +11,13 @@ using MediatR;
 
 namespace Chat.ApplicationServices.API.Handlers
 {
-    public class GetUserByIdHandler : IRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
+    public class GetUserByUsernameHandler : IRequestHandler<GetUserByUsernameRequest, GetUserByUsernameResponse>
     {
         private readonly IMapper _mapper;
         private readonly IQueryExecutor _queryExecutor;
         private readonly IOpenWeatherClient _openWeatherConnector;
 
-        public GetUserByIdHandler(
+        public GetUserByUsernameHandler(
             IMapper mapper,
             IQueryExecutor queryExecutor,
             IOpenWeatherClient openWeatherConnector)
@@ -27,17 +26,17 @@ namespace Chat.ApplicationServices.API.Handlers
             _queryExecutor = queryExecutor;
             _openWeatherConnector = openWeatherConnector;
         }
-        public async Task<GetUserByIdResponse> Handle(GetUserByIdRequest request, CancellationToken cancellationToken)
+        public async Task<GetUserByUsernameResponse> Handle(GetUserByUsernameRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUserByIdQuery()
+            var query = new GetUserByUsernameQuery()
             {
-                Id = request.Id
+                Username = request.Username
             };
 
             DbUser user = await _queryExecutor.Execute(query);
             if (user == null)
             {
-                return new GetUserByIdResponse()
+                return new GetUserByUsernameResponse()
                 {
                     Error = new ErrorModel(ErrorType.NotFound)
                 };
@@ -47,7 +46,7 @@ namespace Chat.ApplicationServices.API.Handlers
             OpenWeatherResponse? weatherResponse = await _openWeatherConnector.Get("Wroclaw");
             DomainWeather weather = _mapper.Map<DomainWeather>(weatherResponse);
 
-            var response = new GetUserByIdResponse()
+            var response = new GetUserByUsernameResponse()
             {
                 Data = mappedUser,
                 Weather = weather

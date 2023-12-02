@@ -13,8 +13,11 @@ namespace Chat.ApplicationServices.Mappings
 
             CreateMap<DbUser, DomainUser>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
-                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
-
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
+                .ForMember(x => x.Surname, y => y.MapFrom(z => z.Surname))
+                .ForMember(x => x.Username, y => y.MapFrom(z => z.Username))
+                .ForMember(x => x.Age, y => y.MapFrom(z => z.Age))
+                .ForMember(x => x.Password, y => y.MapFrom(z => z.Password));
 
         }
     }
