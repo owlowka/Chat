@@ -3,6 +3,7 @@ using System;
 using Chat.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chat.DataAccess.Migrations
 {
     [DbContext(typeof(ChatStorageContext))]
-    partial class ChatStorageContextModelSnapshot : ModelSnapshot
+    [Migration("20231130190213_UserTableColumnsAdded")]
+    partial class UserTableColumnsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -29,7 +32,7 @@ namespace Chat.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Conversations", (string)null);
+                    b.ToTable("Conversations");
                 });
 
             modelBuilder.Entity("Chat.DataAccess.Entities.Message", b =>
@@ -58,7 +61,7 @@ namespace Chat.DataAccess.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Chat.DataAccess.Entities.User", b =>
@@ -88,7 +91,7 @@ namespace Chat.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ConversationUser", b =>
@@ -103,7 +106,7 @@ namespace Chat.DataAccess.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("ConversationUser", (string)null);
+                    b.ToTable("ConversationUser");
                 });
 
             modelBuilder.Entity("Chat.DataAccess.Entities.Message", b =>

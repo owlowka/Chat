@@ -2,11 +2,12 @@
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
 {
-
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ApiControllerBase
@@ -22,6 +23,7 @@ namespace Chat.WebAPI.Controllers
             _logger.LogDebug(1, "Nlog injected into UsersController");
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("")]
         public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
@@ -32,7 +34,6 @@ namespace Chat.WebAPI.Controllers
 
         [HttpPost]
         [Route("")]
-
         public Task<IActionResult> AddUser([FromBody] AddUserRequest request)
         {
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
@@ -49,6 +50,19 @@ namespace Chat.WebAPI.Controllers
             };
 
             return HandleRequest<GetUserByIdRequest, GetUserByIdResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("UserName/{username}")]
+        public Task<IActionResult> GetUserByUsername([FromRoute] string username)
+        {
+
+            var request = new GetUserByUsernameRequest()
+            {
+                Username = username
+            };
+
+            return HandleRequest<GetUserByUsernameRequest, GetUserByUsernameResponse>(request);
         }
     }
 }
