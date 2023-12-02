@@ -5,10 +5,12 @@ using Chat.ApplicationServices.Components.OpenWeather.Configuration;
 using Chat.ApplicationServices.Mappings;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
+using Chat.WebAPI.Authentication;
 
 using FluentValidation;
 using FluentValidation.AspNetCore;
 
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -35,6 +37,10 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+
+builder.Services.AddAuthentication(BasicAuthenticationHandler.SchemaName)
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(
+    BasicAuthenticationHandler.SchemaName, null);
 
 
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
@@ -83,14 +89,16 @@ WebApplication? app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseDeveloperExceptionPage();
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(/* c: => c.SwaggerEndpoint("swagger/v1/swagger.json", "Chat" */);
+    app.UseSwaggerUI(/*c => c.SwaggerEndpoint("swagger/v1/swagger.json", "Chat")*/);
 }
 
 app.UseHttpsRedirection();
 
-//app.UseRouting();
+app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
