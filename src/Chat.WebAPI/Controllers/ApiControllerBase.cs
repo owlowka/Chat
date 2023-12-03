@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Chat.ApplicationServices.API.ErrorHandling;
 
 using System.Net;
+using System.Security.Claims;
 
 namespace Chat.WebAPI.Controllers
 {
@@ -31,6 +32,8 @@ namespace Chat.WebAPI.Controllers
                     .Where(x => x.Value.Errors.Any())
                     .Select(x => new { property = x.Key, errors = x.Value.Errors }));
             }
+
+            var userName = User.FindFirstValue(ClaimTypes.Name);
 
             TResponse? response = await _mediator.Send(request);
             if (response.Error != null)
