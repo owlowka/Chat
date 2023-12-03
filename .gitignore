@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # Sqlite
 *.db
 *.db-???
+/src/Chat.DataAccess/ChatStorageContextFactory.cs
