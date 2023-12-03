@@ -6,6 +6,7 @@ using Chat.ApplicationServices.Mappings;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
 using Chat.WebAPI.Authentication;
+using Chat.WebAPI.Configuration;
 
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -71,11 +72,28 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ChatStorageContext>(options =>
-    options
-        .UseSqlite(
-            builder
-               .Configuration
-               .GetConnectionString("ChatDatabase")));
+{
+    DatabaseOptions? dbOptions = builder
+        .Configuration
+        .GetSection("Database")
+        .Get<DatabaseOptions>();
+
+    string? connectionString = builder
+        .Configuration
+        .GetConnectionString("ChatDatabase");
+
+    switch (dbOptions?.Server)
+    {
+        case DatabaseServer.SQLite:
+            options.UseSqlite(connectionString);
+            break;
+        case DatabaseServer.SqlServer:
+            options.UseSqlServer(connectionString);
+            break;
+        default:
+            throw new NotSupportedException($"{dbOptions?.Server} is not supported");
+    }
+});
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
