@@ -1,13 +1,17 @@
 ﻿global using DbUser = Chat.DataAccess.Entities.User;
 global using DomainUser = Chat.ApplicationServices.API.Domain.Models.User;
+using Chat.ApplicationServices.API.Domain.ValueTypes;
 
 namespace Chat.ApplicationServices.API.Domain.Models
 {
     public class User
     {
         public Guid Id { get; set; }
+
         public required string Name { get; set; }
+
         public ICollection<Conversation> Conversations { get; set; }
+
         public string Surname { get; set; }
 
         public string Username { get; set; }
@@ -15,5 +19,7 @@ namespace Chat.ApplicationServices.API.Domain.Models
         public int Age { get; set; }
 
         public string Password { get; set; }
+
+        public Role Role { get; set; }
     }
 }

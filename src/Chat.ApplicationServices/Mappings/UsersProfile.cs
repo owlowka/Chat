@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Extensions.EnumMapping;
 
 using Chat.ApplicationServices.API.Domain;
 
@@ -18,6 +19,12 @@ namespace Chat.ApplicationServices.Mappings
                 .ForMember(x => x.Username, y => y.MapFrom(z => z.Username))
                 .ForMember(x => x.Age, y => y.MapFrom(z => z.Age))
                 .ForMember(x => x.Password, y => y.MapFrom(z => z.Password));
+
+            CreateMap<DbUser, DomainUser>()
+                .ForMember(x => x.Role, y => y.MapFrom(z => z.Role));
+
+            //CreateMap<DbRole, DomainRole>()
+            //    .ConvertUsingEnumMapping(x => x.MapValue(DbRole, DomainRole));
 
         }
     }
