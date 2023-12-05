@@ -33,8 +33,6 @@ namespace Chat.WebAPI.Controllers
                     .Select(x => new { property = x.Key, errors = x.Value.Errors }));
             }
 
-            var userName = User.FindFirstValue(ClaimTypes.Name);
-
             TResponse? response = await _mediator.Send(request);
             if (response.Error != null)
             {

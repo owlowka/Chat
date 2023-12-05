@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 
 namespace Chat.WebAPI.Authentication
 {
@@ -35,13 +36,13 @@ namespace Chat.WebAPI.Authentication
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             // skip authentication if endpoint has [AllowAnonymous] attribute
-            var endpoint = Context.GetEndpoint();
+            Endpoint? endpoint = Context.GetEndpoint();
             if (endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() != null)
             {
                 return AuthenticateResult.NoResult();
             }
 
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey(HeaderNames.Authorization))
             {
                 return AuthenticateResult.Fail("Missing Authorization Header");
             }
@@ -49,7 +50,7 @@ namespace Chat.WebAPI.Authentication
             User user = null;
             try
             {
-                var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+                var authHeader = AuthenticationHeaderValue.Parse(Request.Headers[HeaderNames.Authorization]);
                 var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
                 var credentials = Encoding.UTF8.GetString(credentialBytes).Split(new[] { ':' }, 2);
                 var username = credentials[0];
@@ -73,7 +74,10 @@ namespace Chat.WebAPI.Authentication
 
             var claims = new[] {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Upn, user.Username),
+                new Claim(ClaimTypes.Hash, user.Password),
+                new Claim(ClaimTypes.Role, Enum.GetName(user.Role)!),
             };
             var identity = new ClaimsIdentity(claims, Scheme.Name);
             var principal = new ClaimsPrincipal(identity);

@@ -1,4 +1,6 @@
-﻿using Chat.ApplicationServices.API.Domain;
+﻿using System.Security.Claims;
+
+using Chat.ApplicationServices.API.Domain;
 
 using MediatR;
 
@@ -7,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ApiControllerBase
@@ -23,7 +25,7 @@ namespace Chat.WebAPI.Controllers
             _logger.LogDebug(1, "Nlog injected into UsersController");
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet]
         [Route("")]
         public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
@@ -32,6 +34,7 @@ namespace Chat.WebAPI.Controllers
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("")]
         public Task<IActionResult> AddUser([FromBody] AddUserRequest request)
@@ -60,6 +63,19 @@ namespace Chat.WebAPI.Controllers
             var request = new GetUserByUsernameRequest()
             {
                 Username = username
+            };
+
+            return HandleRequest<GetUserByUsernameRequest, GetUserByUsernameResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("me")]
+        public Task<IActionResult> GetMyUser()
+        {
+
+            var request = new GetUserByUsernameRequest()
+            {
+                Username = User.FindFirstValue(ClaimTypes.Upn)
             };
 
             return HandleRequest<GetUserByUsernameRequest, GetUserByUsernameResponse>(request);
