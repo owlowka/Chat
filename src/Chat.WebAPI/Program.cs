@@ -1,7 +1,9 @@
+
 using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.Validators;
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
+using Chat.ApplicationServices.Components.Password;
 using Chat.ApplicationServices.Mappings;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
@@ -19,6 +21,8 @@ using Microsoft.Extensions.Options;
 using NLog.Web;
 
 using RestSharp;
+
+
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +47,7 @@ builder.Services.AddAuthentication(BasicAuthenticationHandler.SchemaName)
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(
     BasicAuthenticationHandler.SchemaName, null);
 
+builder.Services.AddSingleton<PasswordHasher>();
 
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
 
@@ -63,7 +68,6 @@ builder.Services.AddSingleton<IRestClient>(serviceProvider =>
     return client;
 });
 
-
 builder.Services.AddAutoMapper(typeof(UsersProfile).Assembly);
 
 builder.Services.AddMediatR(cfg =>
@@ -73,26 +77,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ChatStorageContext>(options =>
 {
-    DatabaseOptions? dbOptions = builder
-        .Configuration
-        .GetSection("Database")
-        .Get<DatabaseOptions>();
-
-    string? connectionString = builder
-        .Configuration
-        .GetConnectionString("ChatDatabase");
-
-    switch (dbOptions?.Server)
-    {
-        case DatabaseServer.SQLite:
-            options.UseSqlite(connectionString);
-            break;
-        case DatabaseServer.SqlServer:
-            options.UseSqlServer(connectionString);
-            break;
-        default:
-            throw new NotSupportedException($"{dbOptions?.Server} is not supported");
-    }
+    options.UseInMemoryDatabase("chatDatabase");
 });
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
