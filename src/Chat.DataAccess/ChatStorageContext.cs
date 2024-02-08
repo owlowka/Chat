@@ -10,7 +10,7 @@ namespace Chat.DataAccess
         {
         }
 
-        public DbSet<Message> Messages { get; set; }
+        public DbSet<MessageEntity> Messages { get; set; }
 
         public DbSet<Conversation> Conversations { get; set; }
 

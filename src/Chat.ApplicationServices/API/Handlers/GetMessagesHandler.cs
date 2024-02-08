@@ -1,5 +1,6 @@
 ﻿using Chat.ApplicationServices.API.Domain;
 using Chat.ApplicationServices.API.Domain.Models;
+using Chat.DataAccess.Entities;
 using Chat.DataAccess;
 
 using MediatR;
@@ -8,17 +9,17 @@ namespace Chat.ApplicationServices.API.Handlers
 {
     public class GetMessagesHandler : IRequestHandler<GetMessagesRequest, GetMessagesResponse>
     {
-        private readonly IRepository<DbMessage> _messagesRepository;
+        private readonly IRepository<MessageEntity> _messagesRepository;
 
-        public GetMessagesHandler(IRepository<DbMessage> messagesRepository)
+        public GetMessagesHandler(IRepository<MessageEntity> messagesRepository)
         {
             _messagesRepository = messagesRepository;
         }
 
         public async Task<GetMessagesResponse> Handle(GetMessagesRequest request, CancellationToken cancellationToken)
         {
-            IEnumerable<DbMessage> messages = await _messagesRepository.GetAll();
-            IEnumerable<Message> domainMessages = messages.Select(x => new Message()
+            IEnumerable<MessageEntity> messages = await _messagesRepository.GetAll();
+            IEnumerable<MessageModel> domainMessages = messages.Select(x => new MessageModel()
             {
                 Id = x.Id,
                 CreatedAt = x.CreatedAt,

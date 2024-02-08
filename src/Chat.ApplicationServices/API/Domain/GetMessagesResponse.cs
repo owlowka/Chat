@@ -2,7 +2,7 @@
 
 namespace Chat.ApplicationServices.API.Domain
 {
-    public class GetMessagesResponse : ResponseBase<List<Message>>
+    public class GetMessagesResponse : ResponseBase<List<MessageModel>>
     {
 
     }

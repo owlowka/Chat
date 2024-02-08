@@ -2,7 +2,7 @@
 
 namespace Chat.DataAccess.Entities
 {
-    public class Message : EntityBase
+    public class MessageEntity : EntityBase
     {
         public required UserEntity Sender { get; set; }
 

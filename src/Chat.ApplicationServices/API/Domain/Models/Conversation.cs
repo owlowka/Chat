@@ -9,7 +9,7 @@ namespace Chat.ApplicationServices.API.Domain.Models
 
         public string Name { get; set; }
 
-        public required ICollection<Message> Messages { get; init; }
+        public required ICollection<MessageModel> Messages { get; init; }
         public required ICollection<UserModel> Users { get; init; }
 
 
