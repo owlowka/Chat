@@ -6,7 +6,7 @@ namespace Chat.DataAccess.Entities
     {
         public required UserEntity Sender { get; set; }
 
-        public required Conversation Conversation { get; set; }
+        public required ConversationEntity Conversation { get; set; }
 
         [Required]
         [MaxLength(1000)]

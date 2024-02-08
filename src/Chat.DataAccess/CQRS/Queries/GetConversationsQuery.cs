@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chat.DataAccess.CQRS.Queries
 {
-    public class GetConversationsQuery : QueryBase<List<Conversation>>
+    public class GetConversationsQuery : QueryBase<List<ConversationEntity>>
     {
-        public override Task<List<Conversation>> Execute(ChatStorageContext context)
+        public override Task<List<ConversationEntity>> Execute(ChatStorageContext context)
         {
             return context.Conversations
                 .Include(x => x.Messages)

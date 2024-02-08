@@ -8,7 +8,7 @@ namespace Chat.ApplicationServices.API.Domain.Models
 
         public required string Name { get; set; }
 
-        public ICollection<Conversation> Conversations { get; set; }
+        public ICollection<ConversationModel> Conversations { get; set; }
 
         public string Surname { get; set; }
 

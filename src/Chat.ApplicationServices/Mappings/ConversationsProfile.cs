@@ -1,13 +1,16 @@
 ﻿
 using AutoMapper;
 
+using Chat.ApplicationServices.API.Domain.Models;
+using Chat.DataAccess.Entities;
+
 namespace Chat.ApplicationServices.Mappings
 {
     public class ConversationsProfile : Profile
     {
         public ConversationsProfile()
         {
-            CreateMap<DbCoversation, DomainCoversation>()
+            CreateMap<ConversationEntity, ConversationModel>()
                 .ForMember(x => x.Id, y => y
                                 .MapFrom(z => z.Id))
                 .ForMember(x => x.Name, y => y

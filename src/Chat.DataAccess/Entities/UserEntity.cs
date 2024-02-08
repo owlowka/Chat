@@ -2,7 +2,7 @@
 {
     public class UserEntity : EntityBase
     {
-        public ICollection<Conversation> Conversations { get; set; } = new List<Conversation>();
+        public ICollection<ConversationEntity> Conversations { get; set; } = new List<ConversationEntity>();
 
         public required string Name { get; set; }
 
