@@ -1,10 +1,8 @@
-﻿global using DbUser = Chat.DataAccess.Entities.User;
-global using DomainUser = Chat.ApplicationServices.API.Domain.Models.User;
-using Chat.ApplicationServices.API.Domain.ValueTypes;
+﻿using Chat.ApplicationServices.API.Domain.ValueTypes;
 
 namespace Chat.ApplicationServices.API.Domain.Models
 {
-    public class User
+    public class UserModel
     {
         public Guid Id { get; set; }
 

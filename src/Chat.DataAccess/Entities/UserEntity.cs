@@ -1,6 +1,6 @@
 ﻿namespace Chat.DataAccess.Entities
 {
-    public class User : EntityBase
+    public class UserEntity : EntityBase
     {
         public ICollection<Conversation> Conversations { get; set; } = new List<Conversation>();
 

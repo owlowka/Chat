@@ -1,4 +1,4 @@
-﻿using Chat.ApplicationServices.API.Domain;
+﻿using Chat.ApplicationServices.API.Domain.Models;
 
 
 using FluentValidation;

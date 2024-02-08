@@ -2,7 +2,7 @@
 
 namespace Chat.ApplicationServices.API.Domain
 {
-    public class GetUserByUsernameResponse : ResponseBase<User>
+    public class GetUserByUsernameResponse : ResponseBase<UserModel>
     {
         public DomainWeather Weather { get; internal set; }
     }

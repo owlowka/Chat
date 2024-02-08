@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 
+using Chat.DataAccess.Entities;
 using Chat.ApplicationServices.API.Domain;
+using Chat.ApplicationServices.API.Domain.Models;
 using Chat.ApplicationServices.API.ErrorHandling;
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Models;
@@ -33,7 +35,7 @@ namespace Chat.ApplicationServices.API.Handlers
                 Username = request.Username
             };
 
-            DbUser user = await _queryExecutor.Execute(query);
+            UserEntity user = await _queryExecutor.Execute(query);
             if (user == null)
             {
                 return new GetUserByUsernameResponse()
@@ -41,7 +43,7 @@ namespace Chat.ApplicationServices.API.Handlers
                     Error = new ErrorModel(ErrorType.NotFound)
                 };
             }
-            DomainUser mappedUser = _mapper.Map<DomainUser>(user);
+            UserModel mappedUser = _mapper.Map<UserModel>(user);
 
             OpenWeatherResponse? weatherResponse = await _openWeatherConnector.Get("Wroclaw");
             DomainWeather weather = _mapper.Map<DomainWeather>(weatherResponse);

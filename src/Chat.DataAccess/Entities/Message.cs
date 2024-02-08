@@ -4,7 +4,7 @@ namespace Chat.DataAccess.Entities
 {
     public class Message : EntityBase
     {
-        public required User Sender { get; set; }
+        public required UserEntity Sender { get; set; }
 
         public required Conversation Conversation { get; set; }
 

@@ -2,9 +2,9 @@
 
 namespace Chat.DataAccess.CQRS.Commands
 {
-    public class AddUserCommand : CommandBase<User, User>
+    public class AddUserCommand : CommandBase<UserEntity, UserEntity>
     {
-        public override async Task<User> Execute(ChatStorageContext context)
+        public override async Task<UserEntity> Execute(ChatStorageContext context)
         {
             await context.Users.AddAsync(Parameter);
             await context.SaveChangesAsync();

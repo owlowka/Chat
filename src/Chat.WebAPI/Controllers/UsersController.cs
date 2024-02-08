@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 
 using Chat.ApplicationServices.API.Domain;
+using Chat.ApplicationServices.API.Domain.Models;
 
 using MediatR;
 
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ApiControllerBase

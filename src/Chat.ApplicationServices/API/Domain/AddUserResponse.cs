@@ -1,7 +1,7 @@
 ﻿
-namespace Chat.ApplicationServices.API.Domain
+namespace Chat.ApplicationServices.API.Domain.Models
 {
-    public class AddUserResponse : ResponseBase<DomainUser>
+    public class AddUserResponse : ResponseBase<UserModel>
     {
 
     }

@@ -3,6 +3,8 @@
 using Chat.ApplicationServices.API.Domain;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
+using Chat.DataAccess.Entities;
+using Chat.ApplicationServices.API.Domain.Models;
 
 using MediatR;
 
@@ -23,8 +25,8 @@ namespace Chat.ApplicationServices.API.Handlers
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
             GetUsersQuery? query = new GetUsersQuery();
-            List<DbUser>? users = await _queryExecutor.Execute(query);
-            List<DomainUser>? mappedUser = _mapper.Map<List<DomainUser>>(users);
+            List<UserEntity>? users = await _queryExecutor.Execute(query);
+            List<UserModel>? mappedUser = _mapper.Map<List<UserModel>>(users);
 
             GetUsersResponse? response = new GetUsersResponse()
             {

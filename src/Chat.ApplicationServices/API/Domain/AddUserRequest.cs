@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Chat.ApplicationServices.API.Domain
+namespace Chat.ApplicationServices.API.Domain.Models
 {
     public class AddUserRequest : IRequest<AddUserResponse>
     {

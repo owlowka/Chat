@@ -2,7 +2,7 @@
 
 namespace Chat.ApplicationServices.API.Domain
 {
-    public class GetUsersResponse : ResponseBase<List<User>>
+    public class GetUsersResponse : ResponseBase<List<UserModel>>
     {
 
     }
