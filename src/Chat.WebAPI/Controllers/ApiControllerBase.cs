@@ -1,13 +1,10 @@
-﻿using Chat.ApplicationServices.API.Domain;
-
-using MediatR;
+﻿using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
-using Chat.ApplicationServices.API.ErrorHandling;
-
 using System.Net;
 using System.Security.Claims;
+using Chat.ApplicationServices.ErrorHandling;
 
 namespace Chat.WebAPI.Controllers
 {

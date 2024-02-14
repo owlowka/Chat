@@ -1,10 +1,9 @@
-
-using Chat.ApplicationServices.API.Domain;
-using Chat.ApplicationServices.API.Validators;
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
 using Chat.ApplicationServices.Components.Password;
-using Chat.ApplicationServices.Mappings;
+using Chat.ApplicationServices.Domain;
+using Chat.ApplicationServices.Domain.User;
+using Chat.ApplicationServices.Domain.User.Add;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
 using Chat.WebAPI.Authentication;
