@@ -4,10 +4,8 @@ using Chat.ApplicationServices.Components.Password;
 using Chat.DataAccess.Entities;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Commands;
-using Chat.ApplicationServices.Components.Password;
 
 using MediatR;
-using Chat.ApplicationServices.Domain.User;
 
 namespace Chat.ApplicationServices.Domain.User.Add
 {

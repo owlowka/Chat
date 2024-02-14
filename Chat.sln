@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.DataAccess", "src\Chat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.ApplicationServices", "src\Chat.ApplicationServices\Chat.ApplicationServices.csproj", "{24B2B924-4966-46D6-A44A-79F372A03213}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat.Domain", "src\Chat.Domain\Chat.Domain.csproj", "{39DBDC52-7427-4E82-9F96-6A02343EEFB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{24B2B924-4966-46D6-A44A-79F372A03213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24B2B924-4966-46D6-A44A-79F372A03213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24B2B924-4966-46D6-A44A-79F372A03213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39DBDC52-7427-4E82-9F96-6A02343EEFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39DBDC52-7427-4E82-9F96-6A02343EEFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39DBDC52-7427-4E82-9F96-6A02343EEFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39DBDC52-7427-4E82-9F96-6A02343EEFB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

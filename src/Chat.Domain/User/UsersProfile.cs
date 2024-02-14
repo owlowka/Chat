@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.Extensions.EnumMapping;
 
 using Chat.DataAccess.Entities;
 using Chat.ApplicationServices.Domain.User.Add;

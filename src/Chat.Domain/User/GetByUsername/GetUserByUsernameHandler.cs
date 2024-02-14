@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 
 using Chat.DataAccess.Entities;
 using Chat.ApplicationServices.Components.OpenWeather;
@@ -9,17 +8,16 @@ using Chat.DataAccess.CQRS.Queries;
 
 using MediatR;
 using Chat.ApplicationServices.ErrorHandling;
-using Chat.ApplicationServices.Domain.User;
 
-namespace Chat.ApplicationServices.Domain.User.GetById
+namespace Chat.ApplicationServices.Domain.User.GetByUsername
 {
-    public class GetUserByIdHandler : IRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
+    public class GetUserByUsernameHandler : IRequestHandler<GetUserByUsernameRequest, GetUserByUsernameResponse>
     {
         private readonly IMapper _mapper;
         private readonly IQueryExecutor _queryExecutor;
         private readonly IOpenWeatherClient _openWeatherConnector;
 
-        public GetUserByIdHandler(
+        public GetUserByUsernameHandler(
             IMapper mapper,
             IQueryExecutor queryExecutor,
             IOpenWeatherClient openWeatherConnector)
@@ -28,17 +26,17 @@ namespace Chat.ApplicationServices.Domain.User.GetById
             _queryExecutor = queryExecutor;
             _openWeatherConnector = openWeatherConnector;
         }
-        public async Task<GetUserByIdResponse> Handle(GetUserByIdRequest request, CancellationToken cancellationToken)
+        public async Task<GetUserByUsernameResponse> Handle(GetUserByUsernameRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUserByIdQuery()
+            var query = new GetUserByUsernameQuery()
             {
-                Id = request.Id
+                Username = request.Username
             };
 
             UserEntity user = await _queryExecutor.Execute(query);
             if (user == null)
             {
-                return new GetUserByIdResponse()
+                return new GetUserByUsernameResponse()
                 {
                     Error = new ErrorModel(ErrorType.NotFound)
                 };
@@ -48,7 +46,7 @@ namespace Chat.ApplicationServices.Domain.User.GetById
             OpenWeatherResponse? weatherResponse = await _openWeatherConnector.Get("Wroclaw");
             DomainWeather weather = _mapper.Map<DomainWeather>(weatherResponse);
 
-            var response = new GetUserByIdResponse()
+            var response = new GetUserByUsernameResponse()
             {
                 Data = mappedUser,
                 Weather = weather

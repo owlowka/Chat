@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 
-using Chat.ApplicationServices.Domain.Conversation;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
 using Chat.DataAccess.Entities;
