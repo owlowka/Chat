@@ -7,7 +7,6 @@ using Chat.ApplicationServices.Domain.User.Add;
 using Chat.DataAccess;
 using Chat.DataAccess.CQRS;
 using Chat.WebAPI.Authentication;
-using Chat.WebAPI.Configuration;
 
 using FluentValidation;
 using FluentValidation.AspNetCore;

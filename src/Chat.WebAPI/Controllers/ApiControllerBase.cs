@@ -3,7 +3,6 @@
 using Microsoft.AspNetCore.Mvc;
 
 using System.Net;
-using System.Security.Claims;
 using Chat.ApplicationServices.ErrorHandling;
 
 namespace Chat.WebAPI.Controllers
