@@ -47,7 +47,7 @@ namespace Chat.WebAPI.Authentication
                 return AuthenticateResult.Fail("Missing Authorization Header");
             }
 
-            User user = null;
+            UserEntity user = null;
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers[HeaderNames.Authorization]);
