@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 
+using Chat.ApplicationServices.Domain.Conversation.GetAll;
 using Chat.DataAccess.Entities;
 
 namespace Chat.ApplicationServices.Domain.Conversation
@@ -9,6 +10,10 @@ namespace Chat.ApplicationServices.Domain.Conversation
     {
         public ConversationsProfile()
         {
+            CreateMap<GetConversationRequest, ConversationEntity>()
+                .ForMember(x => x.Id, y => y
+                                .MapFrom(z => z.Id));
+
             CreateMap<ConversationEntity, ConversationModel>()
                 .ForMember(x => x.Id, y => y
                                 .MapFrom(z => z.Id))
