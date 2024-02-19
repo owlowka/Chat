@@ -1,4 +1,5 @@
 ﻿using Chat.Domain.Conversation.GetAll;
+using Chat.Domain.Conversation.GetByName;
 
 using MediatR;
 
@@ -17,9 +18,20 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetAllConversations([FromQuery] GetConversationRequest request)
+        public Task<IActionResult> GetAllConversations([FromQuery] GetConversationsRequest request)
         {
-            return HandleRequest<GetConversationRequest, GetConversationResponse>(request);
+            return HandleRequest<GetConversationsRequest, GetConversationsResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("{conversationName}")]
+        public Task<IActionResult> GetConversationByName([FromRoute] string conversationName)
+        {
+            var request = new GetConversationByNameRequest()
+            {
+                Name = conversationName
+            };
+            return HandleRequest<GetConversationByNameRequest, GetConversationByNameResponse>(request);
         }
     }
 }

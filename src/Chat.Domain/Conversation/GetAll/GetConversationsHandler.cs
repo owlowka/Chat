@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Chat.Domain.Conversation.GetAll
 {
-    public class GetConversationsHandler : IRequestHandler<GetConversationRequest, GetConversationResponse>
+    public class GetConversationsHandler : IRequestHandler<GetConversationsRequest, GetConversationsResponse>
     {
         private readonly IMapper _mapper;
         private readonly IQueryExecutor _queryExecutor;
@@ -18,13 +18,13 @@ namespace Chat.Domain.Conversation.GetAll
             _queryExecutor = queryExecutor;
         }
 
-        public async Task<GetConversationResponse> Handle(GetConversationRequest request, CancellationToken cancellationToken)
+        public async Task<GetConversationsResponse> Handle(GetConversationsRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetConversationsQuery();
+            var query = new GetConversationQuery();
             List<ConversationEntity> conversations = await _queryExecutor.Execute(query);
             List<ConversationModel> mappedConversation = _mapper.Map<List<ConversationModel>>(conversations);
 
-            var response = new GetConversationResponse()
+            var response = new GetConversationsResponse()
             {
                 Data = mappedConversation
             };

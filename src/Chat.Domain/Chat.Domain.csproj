@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -16,10 +16,6 @@
     <ItemGroup>
         <ProjectReference Include="..\Chat.ApplicationServices\Chat.ApplicationServices.csproj" />
         <ProjectReference Include="..\Chat.DataAccess\Chat.DataAccess.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Core\" />
     </ItemGroup>
 
 </Project>

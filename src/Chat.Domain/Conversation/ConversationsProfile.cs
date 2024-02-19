@@ -1,8 +1,8 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 
 using Chat.DataAccess.Entities;
 using Chat.Domain.Conversation.GetAll;
+using Chat.Domain.Conversation.GetByName;
 
 namespace Chat.Domain.Conversation
 {
@@ -10,9 +10,13 @@ namespace Chat.Domain.Conversation
     {
         public ConversationsProfile()
         {
-            CreateMap<GetConversationRequest, ConversationEntity>()
-                .ForMember(x => x.Id, y => y
-                                .MapFrom(z => z.Id));
+            CreateMap<GetConversationsRequest, ConversationEntity>()
+                .ForMember(x => x.Name, y => y
+                                .MapFrom(z => z.Name));
+
+            CreateMap<GetConversationByNameRequest, ConversationEntity>()
+                .ForMember(x => x.Name, y => y
+                                .MapFrom(z => z.Name));
 
             CreateMap<ConversationEntity, ConversationModel>()
                 .ForMember(x => x.Id, y => y

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chat.Domain.Conversation.GetAll
 {
-    public class GetConversationsQuery : QueryBase<List<ConversationEntity>>
+    public class GetConversationQuery : QueryBase<List<ConversationEntity>>
     {
         public override Task<List<ConversationEntity>> Execute(ChatStorageContext context)
         {
