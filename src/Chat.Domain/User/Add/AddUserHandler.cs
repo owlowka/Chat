@@ -35,7 +35,10 @@ namespace Chat.ApplicationServices.Domain.User.Add
 
             user.Password = _passwordHasher.HashPassword(request.Password);
 
-            var command = new AddUserCommand { Parameter = user };
+            var command = new AddUserCommand
+            {
+                Parameter = user
+            };
             UserEntity? userFromDb = await _commandExecutor.Execute(command);
             return new AddUserResponse()
             {

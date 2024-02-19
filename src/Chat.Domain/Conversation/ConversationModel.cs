@@ -1,4 +1,4 @@
-﻿using Chat.ApplicationServices.Domain.Messages;
+﻿using Chat.ApplicationServices.Domain.Message;
 using Chat.ApplicationServices.Domain.User;
 
 namespace Chat.ApplicationServices.Domain.Conversation

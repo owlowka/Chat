@@ -1,4 +1,5 @@
-﻿using Chat.ApplicationServices.Domain.Messages.GetAll;
+﻿using Chat.ApplicationServices.Domain.Message.Add;
+using Chat.ApplicationServices.Domain.Message.GetAll;
 
 using MediatR;
 
@@ -20,6 +21,13 @@ namespace Chat.WebAPI.Controllers
         public Task<IActionResult> GetAllMessages([FromQuery] GetMessagesRequest request)
         {
             return HandleRequest<GetMessagesRequest, GetMessagesResponse>(request);
+        }
+
+        [HttpPost]
+        [Route("")]
+        public Task<IActionResult> AddMessage([FromBody] AddMessageRequest request)
+        {
+            return HandleRequest<AddMessageRequest, AddMessageResponse>(request);
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using Chat.DataAccess.Entities;
 
 using MediatR;
-using Chat.ApplicationServices.Domain.Messages.GetAll;
+using Chat.ApplicationServices.Domain.Message.GetAll;
 using AutoMapper;
 using Chat.DataAccess.CQRS;
 using Chat.DataAccess.CQRS.Queries;
+using Chat.ApplicationServices.Domain.Message;
 
-namespace Chat.ApplicationServices.Domain.Messages
+namespace Chat.Domain.Message.GetAll
 {
     public class GetMessagesHandler : IRequestHandler<GetMessagesRequest, GetMessagesResponse>
     {
