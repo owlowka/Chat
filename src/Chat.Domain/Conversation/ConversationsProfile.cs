@@ -1,10 +1,10 @@
 ﻿
 using AutoMapper;
 
-using Chat.ApplicationServices.Domain.Conversation.GetAll;
 using Chat.DataAccess.Entities;
+using Chat.Domain.Conversation.GetAll;
 
-namespace Chat.ApplicationServices.Domain.Conversation
+namespace Chat.Domain.Conversation
 {
     public class ConversationsProfile : Profile
     {

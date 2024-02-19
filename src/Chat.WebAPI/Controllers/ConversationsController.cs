@@ -1,4 +1,4 @@
-﻿using Chat.ApplicationServices.Domain.Conversation.GetAll;
+﻿using Chat.Domain.Conversation.GetAll;
 
 using MediatR;
 

@@ -1,6 +1,6 @@
-﻿global using DomainRole = Chat.ApplicationServices.Domain.ValueTypes.Role;
+﻿global using DomainRole = Chat.Domain.ValueTypes.Role;
 
-namespace Chat.ApplicationServices.Domain.ValueTypes
+namespace Chat.Domain.ValueTypes
 {
     public enum Role
     {

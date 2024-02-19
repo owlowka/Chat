@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
+
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.Password;
 using Chat.DataAccess.Entities;
-using Chat.DataAccess.CQRS;
-using Chat.DataAccess.CQRS.Commands;
+using Chat.Domain.CQRS;
 
 using MediatR;
 
-namespace Chat.ApplicationServices.Domain.User.Add
+namespace Chat.Domain.User.Add
 {
     public class AddUserHandler : IRequestHandler<AddUserRequest, AddUserResponse>
     {

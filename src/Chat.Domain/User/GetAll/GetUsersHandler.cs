@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 
-using Chat.DataAccess.CQRS;
-using Chat.DataAccess.CQRS.Queries;
 using Chat.DataAccess.Entities;
+using Chat.Domain.CQRS;
 
 using MediatR;
 
 
-namespace Chat.ApplicationServices.Domain.User.GetAll
+namespace Chat.Domain.User.GetAll
 {
     public class GetUsersHandler : IRequestHandler<GetUsersRequest, GetUsersResponse>
     {

@@ -1,6 +1,4 @@
-﻿using Chat.DataAccess.CQRS.Queries;
-
-namespace Chat.DataAccess.CQRS
+﻿namespace Chat.Domain.CQRS
 {
     public interface IQueryExecutor
     {

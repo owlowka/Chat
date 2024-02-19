@@ -1,6 +1,6 @@
-﻿using Chat.ApplicationServices.Domain.Conversation;
+﻿using Chat.Domain.Conversation;
 
-namespace Chat.ApplicationServices.Domain.User
+namespace Chat.Domain.User
 {
     public class UserModel
     {

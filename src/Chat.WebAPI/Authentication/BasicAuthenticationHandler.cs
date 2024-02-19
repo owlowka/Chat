@@ -3,9 +3,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 
-using Chat.DataAccess.CQRS;
-using Chat.DataAccess.CQRS.Queries;
 using Chat.DataAccess.Entities;
+using Chat.Domain.CQRS;
+using Chat.Domain.User.GetByUsername;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;

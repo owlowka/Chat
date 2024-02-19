@@ -1,9 +1,9 @@
 ﻿using System.Security.Claims;
 
-using Chat.ApplicationServices.Domain.User.Add;
-using Chat.ApplicationServices.Domain.User.GetAll;
-using Chat.ApplicationServices.Domain.User.GetById;
-using Chat.ApplicationServices.Domain.User.GetByUsername;
+using Chat.Domain.User.Add;
+using Chat.Domain.User.GetAll;
+using Chat.Domain.User.GetById;
+using Chat.Domain.User.GetByUsername;
 
 using MediatR;
 

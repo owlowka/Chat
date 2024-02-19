@@ -1,6 +1,8 @@
-﻿using Chat.DataAccess.Entities;
+﻿using Chat.DataAccess;
+using Chat.DataAccess.Entities;
+using Chat.Domain.CQRS;
 
-namespace Chat.DataAccess.CQRS.Commands
+namespace Chat.Domain.Message.Add
 {
     public class AddMessageCommand : CommandBase<MessageEntity, MessageEntity>
     {

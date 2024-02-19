@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Chat.ApplicationServices.Domain.User.GetByUsername
+namespace Chat.Domain.User.GetByUsername
 {
     public class GetUserByUsernameRequest : IRequest<GetUserByUsernameResponse>
     {

@@ -1,6 +1,6 @@
 ﻿using Chat.ApplicationServices.ErrorHandling;
 
-namespace Chat.ApplicationServices.Domain
+namespace Chat.Domain.CQRS
 {
     public class ResponseBase<TEntity> : ErrorResponseBase
     {

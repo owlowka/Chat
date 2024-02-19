@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Chat.ApplicationServices.Domain.User.GetById
+namespace Chat.Domain.User.GetById
 {
     public class GetUserByIdRequest : IRequest<GetUserByIdResponse>
     {

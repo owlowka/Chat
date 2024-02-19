@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Chat.ApplicationServices.Domain.Message.GetAll
+namespace Chat.Domain.Message.GetAll
 {
     public class GetMessagesRequest : IRequest<GetMessagesResponse>
     {

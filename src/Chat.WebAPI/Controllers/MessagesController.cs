@@ -1,5 +1,5 @@
-﻿using Chat.ApplicationServices.Domain.Message.Add;
-using Chat.ApplicationServices.Domain.Message.GetAll;
+﻿using Chat.Domain.Message.Add;
+using Chat.Domain.Message.GetAll;
 
 using MediatR;
 

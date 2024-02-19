@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 
 using Chat.DataAccess.Entities;
-using Chat.ApplicationServices.Domain.User.Add;
+using Chat.Domain.User.Add;
 
-namespace Chat.ApplicationServices.Domain.User
+namespace Chat.Domain.User
 {
     public class UsersProfile : Profile
     {

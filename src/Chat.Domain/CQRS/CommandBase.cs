@@ -1,5 +1,6 @@
-﻿
-namespace Chat.DataAccess.CQRS.Commands
+﻿using Chat.DataAccess;
+
+namespace Chat.Domain.CQRS
 {
     public abstract class CommandBase<TParameter, TResult>
     {

@@ -1,9 +1,10 @@
-﻿
+﻿using Chat.DataAccess;
 using Chat.DataAccess.Entities;
+using Chat.Domain.CQRS;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Chat.DataAccess.CQRS.Queries
+namespace Chat.Domain.User.GetAll
 {
     public class GetUsersQuery : QueryBase<List<UserEntity>>
     {

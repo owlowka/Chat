@@ -1,4 +1,6 @@
-﻿namespace Chat.ApplicationServices.Domain.User.GetByUsername
+﻿using Chat.Domain.CQRS;
+
+namespace Chat.Domain.User.GetByUsername
 {
     public class GetUserByUsernameResponse : ResponseBase<UserModel>
     {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Chat.ApplicationServices.Domain.Message.Add
+namespace Chat.Domain.Message.Add
 {
     public class AddMessageRequest : IRequest<AddMessageResponse>
     {

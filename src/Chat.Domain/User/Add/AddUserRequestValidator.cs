@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Chat.ApplicationServices.Domain.User.Add
+namespace Chat.Domain.User.Add
 {
     public class AddUserRequestValidator : AbstractValidator<AddUserRequest>
     {

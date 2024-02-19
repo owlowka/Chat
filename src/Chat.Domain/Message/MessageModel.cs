@@ -1,4 +1,4 @@
-﻿namespace Chat.ApplicationServices.Domain.Message
+﻿namespace Chat.Domain.Message
 {
     public class MessageModel
     {

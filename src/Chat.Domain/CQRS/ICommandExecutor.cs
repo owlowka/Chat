@@ -1,6 +1,4 @@
-﻿using Chat.DataAccess.CQRS.Commands;
-
-namespace Chat.DataAccess.CQRS
+﻿namespace Chat.Domain.CQRS
 {
     public interface ICommandExecutor
     {

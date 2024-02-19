@@ -4,13 +4,12 @@ using AutoMapper;
 using Chat.DataAccess.Entities;
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Models;
-using Chat.DataAccess.CQRS;
-using Chat.DataAccess.CQRS.Queries;
 
 using MediatR;
 using Chat.ApplicationServices.ErrorHandling;
+using Chat.Domain.CQRS;
 
-namespace Chat.ApplicationServices.Domain.User.GetById
+namespace Chat.Domain.User.GetById
 {
     public class GetUserByIdHandler : IRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
     {

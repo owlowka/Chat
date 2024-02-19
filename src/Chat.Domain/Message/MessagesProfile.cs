@@ -1,9 +1,8 @@
 ﻿
 using AutoMapper;
 
-using Chat.ApplicationServices.Domain.Message;
-using Chat.ApplicationServices.Domain.Message.Add;
 using Chat.DataAccess.Entities;
+using Chat.Domain.Message.Add;
 
 namespace Chat.Domain.Message
 {

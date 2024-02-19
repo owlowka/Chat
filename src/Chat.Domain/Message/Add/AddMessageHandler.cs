@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 
-using Chat.DataAccess.CQRS;
-using Chat.DataAccess.CQRS.Commands;
 using Chat.DataAccess.Entities;
+using Chat.Domain.CQRS;
 
 using MediatR;
 
-namespace Chat.ApplicationServices.Domain.Message.Add
+namespace Chat.Domain.Message.Add
 {
     public class AddMessageHandler : IRequestHandler<AddMessageRequest, AddMessageResponse>
     {

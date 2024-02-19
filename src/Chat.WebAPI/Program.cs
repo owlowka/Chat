@@ -1,11 +1,11 @@
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
 using Chat.ApplicationServices.Components.Password;
-using Chat.ApplicationServices.Domain;
-using Chat.ApplicationServices.Domain.User;
-using Chat.ApplicationServices.Domain.User.Add;
 using Chat.DataAccess;
-using Chat.DataAccess.CQRS;
+using Chat.Domain.CQRS;
+using Chat.Domain.CQRS.Database;
+using Chat.Domain.User;
+using Chat.Domain.User.Add;
 using Chat.WebAPI.Authentication;
 
 using FluentValidation;
@@ -47,9 +47,9 @@ builder.Services.AddAuthentication(BasicAuthenticationHandler.SchemaName)
 
 builder.Services.AddSingleton<PasswordHasher>();
 
-builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
+builder.Services.AddTransient<ICommandExecutor, DbCommandExecutor>();
 
-builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+builder.Services.AddTransient<IQueryExecutor, DbQueryExecutor>();
 
 builder.Services.AddTransient<IOpenWeatherClient, WeatherClient>();
 
@@ -77,9 +77,6 @@ builder.Services.AddDbContext<ChatStorageContext>(options =>
 {
     options.UseInMemoryDatabase("chatDatabase");
 });
-
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,9 +1,9 @@
 ﻿
-global using DomainWeather = Chat.ApplicationServices.Domain.Models.Weather;
+global using DomainWeather = Chat.Domain.Weather.Weather;
 //global using ClientWeather = Chat.ApplicationServices.Components.OpenWeather.Models.OpenWeatherResponse;
 
 
-namespace Chat.ApplicationServices.Domain.Models
+namespace Chat.Domain.Weather
 {
     public class Weather
     {

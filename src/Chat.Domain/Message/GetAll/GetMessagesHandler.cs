@@ -1,11 +1,8 @@
 ﻿using Chat.DataAccess.Entities;
 
 using MediatR;
-using Chat.ApplicationServices.Domain.Message.GetAll;
 using AutoMapper;
-using Chat.DataAccess.CQRS;
-using Chat.DataAccess.CQRS.Queries;
-using Chat.ApplicationServices.Domain.Message;
+using Chat.Domain.CQRS;
 
 namespace Chat.Domain.Message.GetAll
 {

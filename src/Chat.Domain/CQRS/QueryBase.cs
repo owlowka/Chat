@@ -1,4 +1,6 @@
-﻿namespace Chat.DataAccess.CQRS.Queries
+﻿using Chat.DataAccess;
+
+namespace Chat.Domain.CQRS
 {
     public abstract class QueryBase<TResult>
     {

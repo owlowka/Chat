@@ -1,8 +1,10 @@
-﻿using Chat.DataAccess.Entities;
+﻿using Chat.DataAccess;
+using Chat.DataAccess.Entities;
+using Chat.Domain.CQRS;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Chat.DataAccess.CQRS.Queries
+namespace Chat.Domain.User.GetById
 {
     public class GetUserByIdQuery : QueryBase<UserEntity>
     {

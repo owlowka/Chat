@@ -1,12 +1,12 @@
-﻿using Chat.DataAccess.CQRS.Queries;
+﻿using Chat.DataAccess;
 
-namespace Chat.DataAccess.CQRS
+namespace Chat.Domain.CQRS.Database
 {
-    public class QueryExecutor : IQueryExecutor
+    public class DbQueryExecutor : IQueryExecutor
     {
         private readonly ChatStorageContext _context;
 
-        public QueryExecutor(ChatStorageContext context)
+        public DbQueryExecutor(ChatStorageContext context)
         {
             _context = context;
         }

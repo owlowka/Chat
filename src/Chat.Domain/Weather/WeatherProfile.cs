@@ -4,7 +4,7 @@ using Chat.ApplicationServices.Components.OpenWeather.Models;
 
 
 
-namespace Chat.ApplicationServices.Domain.Weather
+namespace Chat.Domain.Weather
 {
     public class WeatherProfile : Profile
     {
