@@ -1,33 +1,33 @@
 ﻿using Chat.DataAccess.Entities;
-using Chat.DataAccess;
 
 using MediatR;
 using Chat.ApplicationServices.Domain.Messages.GetAll;
+using AutoMapper;
+using Chat.DataAccess.CQRS;
+using Chat.DataAccess.CQRS.Queries;
 
 namespace Chat.ApplicationServices.Domain.Messages
 {
     public class GetMessagesHandler : IRequestHandler<GetMessagesRequest, GetMessagesResponse>
     {
-        private readonly IRepository<MessageEntity> _messagesRepository;
+        private readonly IMapper _mapper;
+        private readonly IQueryExecutor _queryExecutor;
 
-        public GetMessagesHandler(IRepository<MessageEntity> messagesRepository)
+        public GetMessagesHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            _messagesRepository = messagesRepository;
+            _mapper = mapper;
+            _queryExecutor = queryExecutor;
         }
 
         public async Task<GetMessagesResponse> Handle(GetMessagesRequest request, CancellationToken cancellationToken)
         {
-            IEnumerable<MessageEntity> messages = await _messagesRepository.GetAll();
-            IEnumerable<MessageModel> domainMessages = messages.Select(x => new MessageModel()
-            {
-                Id = x.Id,
-                CreatedAt = x.CreatedAt,
-                Content = x.Content
-            });
+            var query = new GetMessagesQuery();
+            List<MessageEntity> messages = await _queryExecutor.Execute(query);
+            List<MessageModel> mappedMessage = _mapper.Map<List<MessageModel>>(messages);
 
             var response = new GetMessagesResponse()
             {
-                Data = domainMessages.ToList()
+                Data = mappedMessage
             };
 
             return response;
