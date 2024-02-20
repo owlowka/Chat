@@ -1,10 +1,10 @@
-﻿using Chat.DataAccess.Entities;
+﻿using Chat.Domain.User;
 
 namespace Chat.Domain.Message
 {
     public class MessageModel
     {
-        public required UserEntity Sender { get; set; }
+        public required UserModel Sender { get; set; }
 
         public Guid Id { get; set; }
 

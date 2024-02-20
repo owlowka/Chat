@@ -1,8 +1,10 @@
-﻿using Chat.Domain.Conversation.GetAll;
+﻿using Chat.Domain.Conversation.Add;
+using Chat.Domain.Conversation.GetAll;
 using Chat.Domain.Conversation.GetByName;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
@@ -32,6 +34,14 @@ namespace Chat.WebAPI.Controllers
                 Name = conversationName
             };
             return HandleRequest<GetConversationByNameRequest, GetConversationByNameResponse>(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("")]
+        public Task<IActionResult> AddConversation([FromBody] AddConversationRequest request)
+        {
+            return HandleRequest<AddConversationRequest, AddConversationResponse>(request);
         }
     }
 }

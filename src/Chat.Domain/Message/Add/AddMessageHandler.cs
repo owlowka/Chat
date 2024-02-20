@@ -30,6 +30,7 @@ namespace Chat.Domain.Message.Add
             };
 
             var messageFromDb = await _commandExecutor.Execute(command);
+
             return new AddMessageResponse()
             {
                 Data = _mapper.Map<MessageModel>(messageFromDb)
