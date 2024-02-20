@@ -2,8 +2,8 @@
 
 namespace Chat.Domain.CQRS
 {
-    public class ResponseBase<TEntity> : ErrorResponseBase
+    public class ResponseBase<TModel> : ErrorResponseBase
     {
-        public TEntity? Data { get; set; }
+        public TModel? Data { get; set; }
     }
 }
