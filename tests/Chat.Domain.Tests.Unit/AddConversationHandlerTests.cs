@@ -50,5 +50,25 @@ namespace Chat.ApplicationServices.Tests
                 .NotThrowAsync();
         }
 
+        [Test]
+        public async Task Handle_ShouldReturnNotNullResponse_When_RequestIsNotNull()
+        {
+            //Arrange
+            AddConversationHandler sut = CreateSut();
+
+            AddConversationRequest request = new()
+            {
+                Messages = [],
+                Users = []
+            };
+
+            //Act
+            AddConversationResponse response = await sut.Handle(request);
+
+            //Assert
+            response
+                .Should()
+                .NotBeNull();
+        }
     }
 }
