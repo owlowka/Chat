@@ -16,24 +16,32 @@ namespace Chat.Domain.Conversation.Add
             ICommandExecutor commandExecutor
             )
         {
+            ArgumentNullException.ThrowIfNull(mapper);
+            ArgumentNullException.ThrowIfNull(commandExecutor);
+
             _mapper = mapper;
             _commandExecutor = commandExecutor;
         }
-        public async Task<AddConversationResponse> Handle(AddConversationRequest request, CancellationToken cancellationToken)
+        public async Task<AddConversationResponse> Handle(AddConversationRequest request, CancellationToken cancellationToken = default)
         {
-            var conversation = _mapper.Map<ConversationEntity>(request);
+            ArgumentNullException.ThrowIfNull(request);
+
+            ConversationEntity conversation = _mapper.Map<ConversationEntity>(request);
 
             var command = new AddConversationCommand()
             {
                 Parameter = conversation
             };
 
-            var conversationFromDb = await _commandExecutor.Execute(command);
+            ConversationEntity conversationFromDb = await _commandExecutor.Execute(command);
 
-            return new AddConversationResponse()
+            return MapToResponse(conversationFromDb);
+        }
+
+        private AddConversationResponse MapToResponse(ConversationEntity conversationFromDb) =>
+            new()
             {
                 Data = _mapper.Map<ConversationModel>(conversationFromDb)
             };
-        }
     }
 }

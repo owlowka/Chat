@@ -1,9 +1,9 @@
 namespace Chat.ApplicationServices.Tests
 {
-    [TestClass]
-    public class UnitTest1
+    [TestFixture]
+    public class AddConversationCommandTests
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
         }
