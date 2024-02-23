@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 using AutoMapper;
 
 using Chat.Domain.Conversation.Add;
@@ -69,6 +71,57 @@ namespace Chat.ApplicationServices.Tests
             response
                 .Should()
                 .NotBeNull();
+        }
+        //mock as empty
+        [Test]
+        public void Constructor_ShouldThrowArgumentNullException_When_MapperIsEmpty()
+        {
+            //Arrange
+            Mock<ICommandExecutor> mockCommandExecutor = new Mock<ICommandExecutor>();
+
+            Mock<AddConversationRequest> request = new Mock<AddConversationRequest>();
+
+            //Act
+            FluentActions
+                .Invoking(() => new AddConversationHandler(null!, mockCommandExecutor.Object))
+            //Assert
+                .Should()
+                .ThrowExactly<ArgumentNullException>();
+
+        }
+
+        [Test]
+
+        public void Constructor_ShouldThrowArgumentNullException_When_CommandExecutorIsEmpty()
+        {
+            //Arrange
+            var mockMapper = new Mock<IMapper>();
+
+            var request = new Mock<AddConversationRequest>();
+
+            //Act
+            FluentActions
+                .Invoking(() => new AddConversationHandler(mockMapper.Object, null!))
+
+            //Assert
+                .Should()
+                .ThrowExactly<ArgumentNullException>();
+
+        }
+
+        [Test]
+
+        public void Constructor_ShouldThrowArgumentNullException_When_BothParametersAreEmpty()
+        {
+            //Arrange
+            var request = new Mock<AddConversationRequest>();
+
+            //Act
+            FluentActions
+                .Invoking(() => new AddConversationHandler(null!, null!))
+            //Assert
+                .Should()
+                .ThrowExactly<ArgumentNullException>();
         }
     }
 }
