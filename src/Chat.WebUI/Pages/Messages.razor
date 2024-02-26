@@ -1,0 +1,25 @@
+﻿@page "/chat"
+@using Chat.Domain.Message.GetAll;
+@inherits MessagesBase
+
+@if(Messages == null)
+{
+    <h3>Loading messages...</h3>
+}
+else
+{
+    <h3 class="mb-5"> Messages</h3>
+
+    var messagesData = Messages.Data;
+
+    @if (messagesData.Count > 0)
+    {
+        var messagesRowList = new List<GetMessagesResponse>();
+
+        @foreach (var message in messagesData)
+        {
+            <p>message</p>
+        }
+    }
+
+}

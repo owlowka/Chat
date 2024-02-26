@@ -3,6 +3,7 @@
 using MediatR;
 using AutoMapper;
 using Chat.Domain.CQRS;
+using Chat.ApplicationServices.ErrorHandling;
 
 namespace Chat.Domain.Message.GetAll
 {
@@ -21,8 +22,15 @@ namespace Chat.Domain.Message.GetAll
         {
             var query = new GetMessagesQuery();
             List<MessageEntity> messages = await _queryExecutor.Execute(query);
+            if(messages == null)
+            {
+                return new GetMessagesResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
             List<MessageModel> mappedMessage = _mapper.Map<List<MessageModel>>(messages);
-
+              
             var response = new GetMessagesResponse()
             {
                 Data = mappedMessage

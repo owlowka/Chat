@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.Domain.Tests.Unit", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.WebAPI.Tests.Unit", "tests\Chat.WebAPI.Tests.Unit\Chat.WebAPI.Tests.Unit.csproj", "{F08AFDCA-BAFB-4955-916D-06C6999FF67C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat.WebUI", "src\Chat.WebUI\Chat.WebUI.csproj", "{E313FCCB-B97E-448A-BA1B-D3C376B3BF4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.WebUI", "src\Chat.WebUI\Chat.WebUI.csproj", "{E313FCCB-B97E-448A-BA1B-D3C376B3BF4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
