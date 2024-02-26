@@ -20,14 +20,14 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetAllConversations([FromQuery] GetConversationsRequest request)
+        public Task<ActionResult<GetConversationsResponse>> GetAllConversations([FromQuery] GetConversationsRequest request)
         {
             return HandleRequest<GetConversationsRequest, GetConversationsResponse>(request);
         }
 
         [HttpGet]
         [Route("{conversationName}")]
-        public Task<IActionResult> GetConversationByName([FromRoute] string conversationName)
+        public Task<ActionResult<GetConversationByNameResponse>> GetConversationByName([FromRoute] string conversationName)
         {
             var request = new GetConversationByNameRequest()
             {
@@ -39,7 +39,7 @@ namespace Chat.WebAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("")]
-        public Task<IActionResult> AddConversation([FromBody] AddConversationRequest request)
+        public Task<ActionResult<AddConversationResponse>> AddConversation([FromBody] AddConversationRequest request)
         {
             return HandleRequest<AddConversationRequest, AddConversationResponse>(request);
         }

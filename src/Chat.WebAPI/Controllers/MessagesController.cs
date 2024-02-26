@@ -18,14 +18,14 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetAllMessages([FromQuery] GetMessagesRequest request)
+        public Task<ActionResult<GetMessagesResponse>> GetAllMessages([FromQuery] GetMessagesRequest request)
         {
             return HandleRequest<GetMessagesRequest, GetMessagesResponse>(request);
         }
 
         [HttpPost]
         [Route("")]
-        public Task<IActionResult> AddMessage([FromBody] AddMessageRequest request)
+        public Task<ActionResult<AddMessageResponse>> AddMessage([FromBody] AddMessageRequest request)
         {
             return HandleRequest<AddMessageRequest, AddMessageResponse>(request);
         }

@@ -31,7 +31,7 @@ namespace Chat.WebAPI.Controllers
         //[AllowAnonymous]
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
+        public Task<ActionResult<GetUsersResponse>> GetAllUsers([FromQuery] GetUsersRequest request)
         {
             _logger.LogInformation("Hello, this is the GetAllUsers!");
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
@@ -40,14 +40,14 @@ namespace Chat.WebAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("")]
-        public Task<IActionResult> AddUser([FromBody] AddUserRequest request)
+        public Task<ActionResult<AddUserResponse>> AddUser([FromBody] AddUserRequest request)
         {
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
         }
 
         [HttpGet]
         [Route("{userId}")]
-        public Task<IActionResult> GetUserById([FromRoute] Guid userId)
+        public Task<ActionResult<GetUserByIdResponse>> GetUserById([FromRoute] Guid userId)
         {
 
             var request = new GetUserByIdRequest()
@@ -60,7 +60,7 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("UserName/{username}")]
-        public Task<IActionResult> GetUserByUsername([FromRoute] string username)
+        public Task<ActionResult<GetUserByUsernameResponse>> GetUserByUsername([FromRoute] string username)
         {
 
             var request = new GetUserByUsernameRequest()
@@ -73,7 +73,7 @@ namespace Chat.WebAPI.Controllers
 
         [HttpGet]
         [Route("me")]
-        public Task<IActionResult> GetMyUser()
+        public Task<ActionResult<GetUserByUsernameResponse>> GetMyUser()
         {
 
             var request = new GetUserByUsernameRequest()

@@ -16,7 +16,7 @@ namespace Chat.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        protected async Task<IActionResult> HandleRequest<TRequest, TResponse>(TRequest request)
+        protected async Task<ActionResult<TResponse>> HandleRequest<TRequest, TResponse>(TRequest request)
             where TRequest : IRequest<TResponse>
             where TResponse : ErrorResponseBase
         {
@@ -32,12 +32,12 @@ namespace Chat.WebAPI.Controllers
             TResponse? response = await _mediator.Send(request);
             if (response.Error != null)
             {
-                return ErrorResponse(response.Error);
+                return ErrorResponse<TResponse>(response.Error);
             }
             return Ok(response);
         }
 
-        private IActionResult ErrorResponse(ErrorModel errorModel)
+        private ActionResult<TResponse> ErrorResponse<TResponse>(ErrorModel errorModel)
         {
             HttpStatusCode httpCode = GetHttpStatusCode(errorModel.Error);
             return StatusCode((int)httpCode, errorModel);
