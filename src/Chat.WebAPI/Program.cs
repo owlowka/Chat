@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 
 using NLog.Web;
 
@@ -91,6 +92,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(/*c => c.SwaggerEndpoint("swagger/v1/swagger.json", "Chat")*/);
 }
+
+app.UseCors(policy =>
+    policy
+        .WithOrigins("http://localhost:5222", "https://localhost:7106")
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType));
 
 app.UseHttpsRedirection();
 
