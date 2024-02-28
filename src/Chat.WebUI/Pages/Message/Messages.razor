@@ -1,4 +1,5 @@
 ﻿@page "/chat"
+@using Chat.Domain.Message
 @using Chat.Domain.Message.GetAll;
 @inherits MessagesBase
 
@@ -10,16 +11,19 @@ else
 {
     <h3 class="mb-5"> Messages</h3>
 
-    var messagesData = Messages.Data;
+List<MessageModel> messagesData = Messages.Data;
 
-    @if (messagesData.Count > 0)
+    @if (messagesData is [_, ..])
     {
-        var messagesRowList = new List<GetMessagesResponse>();
-
         @foreach (var message in messagesData)
         {
-            <p>message</p>
+            <div>@message.Content</div>
         }
+    }
+    else
+    {
+        <h2>No messages :(</h2>
     }
 
 }
+

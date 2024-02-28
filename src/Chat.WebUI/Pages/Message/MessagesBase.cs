@@ -3,7 +3,7 @@ using Chat.WebUI.Services.Contracts;
 
 using Microsoft.AspNetCore.Components;
 
-namespace Chat.WebUI.Pages
+namespace Chat.WebUI.Pages.Message
 {
     public class MessagesBase : ComponentBase
     {
