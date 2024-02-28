@@ -1,15 +1,20 @@
+using System.Reflection;
+
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
 using Chat.ApplicationServices.Components.Password;
 using Chat.DataAccess;
 using Chat.Domain.CQRS;
 using Chat.Domain.CQRS.Database;
+using Chat.Domain.Message.Add;
 using Chat.Domain.User;
 using Chat.Domain.User.Add;
 using Chat.WebAPI.Authentication;
 
 using FluentValidation;
 using FluentValidation.AspNetCore;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -108,5 +113,22 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
+{
+    ISender sender = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+    IEnumerable<AddMessageRequest> requests = Enumerable
+        .Range(0, 10)
+        .Select(i => new AddMessageRequest
+        {
+            Content = $"Test {i}"
+        });
+
+    foreach (AddMessageRequest? request in requests)
+    {
+        await sender.Send(request);
+    }
+}
 
 app.Run();

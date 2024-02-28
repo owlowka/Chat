@@ -1,6 +1,7 @@
 ﻿@page "/chat"
 @using Chat.Domain.Message
 @using Chat.Domain.Message.GetAll;
+@using Chat.WebUI.Pages.Conversation;
 @inherits MessagesBase
 
 @if(Messages == null)
@@ -13,15 +14,12 @@ else
 
 List<MessageModel> messagesData = Messages.Data;
 
+    @* <MessagesList Messages="@Messages.Data" /> *@
     @if (messagesData is [_, ..])
     {
         @foreach (var message in messagesData)
         {
-            <div class="message">
-                <p class="sender">@message.Sender</p>
-                <p class="createdAt">@message.CreatedAt</p>
-                <p class="content">@message.Content</p>
-            </div>
+            <ConversationMessage Model="@message"> </ConversationMessage>
         }
     }
     else
@@ -29,5 +27,7 @@ List<MessageModel> messagesData = Messages.Data;
         <h2>No messages :(</h2>
     }
 
+    @* <InputTextArea /> *@
+    <button>Send</button>
 }
 

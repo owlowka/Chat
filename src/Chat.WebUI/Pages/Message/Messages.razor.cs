@@ -8,7 +8,6 @@ namespace Chat.WebUI.Pages.Message
     public class MessagesBase : ComponentBase
     {
         [Inject]
-
         public IMessageService MessageService { get; set; }
 
         public GetMessagesResponse Messages { get; set; }
