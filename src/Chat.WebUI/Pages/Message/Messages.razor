@@ -17,7 +17,11 @@ List<MessageModel> messagesData = Messages.Data;
     {
         @foreach (var message in messagesData)
         {
-            <div>@message.Content</div>
+            <div class="message">
+                <p class="sender">@message.Sender</p>
+                <p class="createdAt">@message.CreatedAt</p>
+                <p class="content">@message.Content</p>
+            </div>
         }
     }
     else
