@@ -1,0 +1,15 @@
+﻿@inherits MessageListBase
+
+<h3>MessageList</h3>
+
+@if (List is [_, ..])
+{
+    @foreach (var message in List)
+    {
+        <Message Model="@message" IsSentByCurrentUser="@false" />
+    }
+}
+else
+{
+    <h2>No messages :(</h2>
+}

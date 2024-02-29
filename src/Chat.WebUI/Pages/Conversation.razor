@@ -1,0 +1,20 @@
+﻿@page "/chat"
+@using Chat.Domain.Message
+@using Chat.Domain.Message.GetAll;
+@using Chat.WebUI.Pages;
+@inherits ConversationBase
+
+@if(Messages == null)
+{
+    <h3>Loading messages...</h3>
+}
+else
+{
+    <h3 class="mb-5"> Messages</h3>
+
+    <MessagesList List="@Messages.Data" />
+
+    @* <InputTextArea /> *@
+    <button>Send</button>
+}
+

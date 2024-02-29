@@ -3,9 +3,9 @@ using Chat.WebUI.Services.Contracts;
 
 using Microsoft.AspNetCore.Components;
 
-namespace Chat.WebUI.Pages.Message
+namespace Chat.WebUI.Pages
 {
-    public class MessagesBase : ComponentBase
+    public class ConversationBase : ComponentBase
     {
         [Inject]
         public IMessageService MessageService { get; set; }
