@@ -1,4 +1,3 @@
-using System.Reflection;
 
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
@@ -122,7 +121,11 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
         .Range(0, 10)
         .Select(i => new AddMessageRequest
         {
-            Content = $"Test {i}"
+            Content = $"Test {i}",
+            Sender = new UserModel()
+            {
+                Name = RandomNameGenerator.GenerateRandomName()
+            }
         });
 
     foreach (AddMessageRequest? request in requests)
@@ -132,3 +135,10 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
 }
 
 app.Run();
+
+public class RandomNameGenerator
+{
+    private static readonly string[] _names = ["Alice", "Bob"];
+
+    public static string GenerateRandomName() => Random.Shared.GetItems(_names, 1)[0];
+}

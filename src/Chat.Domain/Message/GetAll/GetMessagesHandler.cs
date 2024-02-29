@@ -30,7 +30,7 @@ namespace Chat.Domain.Message.GetAll
                 };
             }
             List<MessageModel> mappedMessage = _mapper.Map<List<MessageModel>>(messages);
-              
+
             var response = new GetMessagesResponse()
             {
                 Data = mappedMessage

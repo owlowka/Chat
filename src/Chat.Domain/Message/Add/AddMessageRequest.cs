@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Chat.Domain.User;
+
+using MediatR;
 
 namespace Chat.Domain.Message.Add
 {
@@ -7,6 +9,8 @@ namespace Chat.Domain.Message.Add
         public DateTime CreatedAt { get; set; }
 
         public string Content { get; set; }
+
+        public required UserModel Sender { get; set; }
 
     }
 }
