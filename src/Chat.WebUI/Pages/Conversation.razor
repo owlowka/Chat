@@ -4,17 +4,29 @@
 @using Chat.WebUI.Pages;
 @inherits ConversationBase
 
-@if(Messages == null)
-{
-    <h3>Loading messages...</h3>
-}
-else
-{
-    <h3 class="mb-5"> Messages</h3>
+<div class="conversationContainer">
+    <h1><b>Conversation container</b></h1>
 
-    <MessagesList List="@Messages.Data" />
+        <div class="conversationHeader">
+            <h2><b>Conversation with</b></h2>
+        </div>
 
-    @* <InputTextArea /> *@
-    <button>Send</button>
-}
+        <div class="conversationMessagesList">
+            @if(Messages == null)
+            {
+                <h3>Loading messages...</h3>
+            }
+            else
+            {
+                <h3 class="mb-5">Messages</h3>
 
+                <MessagesList List="@Messages.Data" />
+            }
+        </div>
+
+        <div class="conversationMessageInput">
+            <h2><b>Message input</b></h2>
+            <button>Send</button>
+        </div>
+
+</div>

@@ -4,9 +4,16 @@
 
 @if (List is [_, ..])
 {
+    @*Bootstrap*@
+    @*MessageList*@
+    @*ListaItem*@
+
     @foreach (var message in List)
     {
-        <Message Model="@message" IsSentByCurrentUser="@false" />
+        bool isSentByCurrentUser = message.Sender?.Name == "Alice";
+
+        <Message Model = "@message" IsSentByCurrentUser = "@isSentByCurrentUser" />
+
     }
 }
 else
