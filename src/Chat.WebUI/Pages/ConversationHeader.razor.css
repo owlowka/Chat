@@ -1,0 +1,12 @@
+﻿.conversationHeader {
+    background-color: #f2f2f2;
+    margin: 5px;
+    padding: 10px;
+    border: 5px dotted lightblue;
+    border-radius: 10px;
+    text-align: center;
+    color: lightblue;
+    display: block;
+
+    z-index: 1000;
+}

@@ -33,7 +33,7 @@ namespace Chat.Domain.User.Add
 
             UserEntity? user = _mapper.Map<UserEntity>(request);
 
-            user.Password = _passwordHasher.HashPassword(request.Password);
+            user.Password = _passwordHasher.HashPassword(request.Password ?? "default");
 
             var command = new AddUserCommand
             {

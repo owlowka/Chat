@@ -1,32 +1,37 @@
 ﻿@page "/chat"
+@inherits ConversationBase
 @using Chat.Domain.Message
 @using Chat.Domain.Message.GetAll;
+@using Chat.Domain.User
 @using Chat.WebUI.Pages;
-@inherits ConversationBase
+
 
 <div class="conversationContainer">
-    <h1><b>Conversation container</b></h1>
+    <input type="text" @bind="UserName" @bind:after="RefreshUser" />
 
-        <div class="conversationHeader">
-            <h2><b>Conversation with</b></h2>
-        </div>
+    <h1><b>Conversation container @UserName</b></h1>
 
-        <div class="conversationMessagesList">
-            @if(Messages == null)
-            {
-                <h3>Loading messages...</h3>
-            }
-            else
-            {
-                <h3 class="mb-5">Messages</h3>
+    @if (User is not null)
+    {
+        <ConversationHeader Model="@User.Data" />
+    }
 
-                <MessagesList List="@Messages.Data" />
-            }
-        </div>
+    <div class="conversationMessagesList">
+        @if (Messages == null)
+        {
+            <h3>Loading messages...</h3>
+        }
+        else
+        {
+            <h3 class="mb-5">Messages</h3>
 
-        <div class="conversationMessageInput">
-            <h2><b>Message input</b></h2>
-            <button>Send</button>
-        </div>
+            <MessagesList List="@Messages.Data" />
+        }
+    </div>
 
+    <div class="conversationMessageInput">
+        <h2><b>Message input</b></h2>
+        <div class="textArea"></div>
+        <button>Send</button>
+    </div>
 </div>
