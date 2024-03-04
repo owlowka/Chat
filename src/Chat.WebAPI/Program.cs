@@ -113,6 +113,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
 await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
 {
     ISender sender = scope.ServiceProvider.GetRequiredService<IMediator>();
@@ -132,13 +133,25 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
     {
         await sender.Send(request);
     }
+
+    IEnumerable<AddUserRequest> userRequests = RandomNameGenerator.Names
+    .Select(userName => new AddUserRequest
+    {
+        Username = userName,
+        Name = $"I am {userName}"
+    });
+
+    foreach (AddUserRequest? request in userRequests)
+    {
+        await sender.Send(request);
+    }
 }
 
 app.Run();
 
 public class RandomNameGenerator
 {
-    private static readonly string[] _names = ["Alice", "Bob"];
+    public static readonly string[] Names = ["Alice", "Bob"];
 
-    public static string GenerateRandomName() => Random.Shared.GetItems(_names, 1)[0];
+    public static string GenerateRandomName() => Random.Shared.GetItems(Names, 1)[0];
 }
