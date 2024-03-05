@@ -46,6 +46,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     options.SuppressModelStateInvalidFilter = true;
 });
 
+
 builder.Services.AddAuthentication(BasicAuthenticationHandler.SchemaName)
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(
     BasicAuthenticationHandler.SchemaName, null);
@@ -123,10 +124,8 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
         .Select(i => new AddMessageRequest
         {
             Content = $"Test {i}",
-            Sender = new UserModel()
-            {
-                Name = RandomNameGenerator.GenerateRandomName()
-            }
+            Sender = RandomNameGenerator.GenerateRandomName(),
+            CreatedAt = DateTime.UtcNow
         });
 
     foreach (AddMessageRequest? request in requests)

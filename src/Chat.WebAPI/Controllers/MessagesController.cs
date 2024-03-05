@@ -3,6 +3,7 @@ using Chat.Domain.Message.GetAll;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
@@ -23,6 +24,7 @@ namespace Chat.WebAPI.Controllers
             return HandleRequest<GetMessagesRequest, GetMessagesResponse>(request);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("")]
         public Task<ActionResult<AddMessageResponse>> AddMessage([FromBody] AddMessageRequest request)

@@ -1,0 +1,11 @@
+@inherits ConversationMessageInputBase
+
+<div class="conversationMessageInput">
+    <FluentTextArea @bind-Value=_value
+                    Resize="TextAreaResize.Horizontal"
+                    style="width: 100%;"
+                    Placeholder="Aa"/>
+    <FluentButton Loading="@_sending"
+                  OnClick="@StartSendingAsync"
+                  Appearance="Appearance.Accent">Send</FluentButton>
+</div>

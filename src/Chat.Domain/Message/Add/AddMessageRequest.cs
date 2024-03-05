@@ -1,16 +1,14 @@
-﻿using Chat.Domain.User;
-
-using MediatR;
+﻿using MediatR;
 
 namespace Chat.Domain.Message.Add
 {
     public class AddMessageRequest : IRequest<AddMessageResponse>
     {
-        public DateTime CreatedAt { get; set; }
+        public required DateTime CreatedAt { get; init; }
 
-        public string Content { get; set; }
+        public required string Content { get; init; }
 
-        public required UserModel Sender { get; set; }
+        public required string Sender { get; init; }
 
     }
 }

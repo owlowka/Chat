@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 
+using Chat.Domain.Message.Add;
 using Chat.Domain.Message.GetAll;
 using Chat.Domain.User.GetByUsername;
 using Chat.WebUI.Services.Contracts;
@@ -48,9 +49,34 @@ namespace Chat.WebUI.Services
             }
         }
 
-        public Task<GetUserByUsernameResponse> GetUserByUserName()
+        public async Task<AddMessageResponse?> SendMessage(string inputMessage)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                AddMessageRequest request = new()
+                {
+                    Sender = "Bob",
+                    Content = inputMessage,
+                    CreatedAt = DateTime.Now
+                };
+
+                using HttpResponseMessage response =
+                    await _httpClient.PostAsJsonAsync("Messages", request);
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadFromJsonAsync<AddMessageResponse>();
+
+            }
+            catch (HttpRequestException e)
+            {
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
     }
 }

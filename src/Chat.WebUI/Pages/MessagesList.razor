@@ -13,10 +13,14 @@
         bool isSentByCurrentUser = message.Sender?.Name == "Alice";
 
         <Message Model = "@message" IsSentByCurrentUser = "@isSentByCurrentUser" />
-
     }
 }
 else
 {
     <h2>No messages :(</h2>
 }
+<FluentButton IconStart="@(new Icons.Regular.Size16.ArrowClockwise())"
+              Loading="@_refreshing"
+              OnClick="@RefreshMessagesAsync">
+    Refresh
+</FluentButton>

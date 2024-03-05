@@ -9,7 +9,7 @@
 <div class="conversationContainer">
     <input type="text" @bind="UserName" @bind:after="RefreshUser" />
 
-    <h1><b>Conversation container @UserName</b></h1>
+    @*<h1><b>Conversation container @UserName</b></h1>*@
 
     @if (User is not null)
     {
@@ -25,13 +25,9 @@
         {
             <h3 class="mb-5">Messages</h3>
 
-            <MessagesList List="@Messages.Data" />
+            <MessagesList/>
         }
     </div>
 
-    <div class="conversationMessageInput">
-        <h2><b>Message input</b></h2>
-        <div class="textArea"></div>
-        <button>Send</button>
-    </div>
+    <ConversationMessageInput />
 </div>
