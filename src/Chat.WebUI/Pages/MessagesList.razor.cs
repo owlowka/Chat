@@ -22,9 +22,9 @@ namespace Chat.WebUI.Pages
 
             try
             {
-                GetMessagesResponse response = await MessageService.GetMessages();
+                IEnumerable<MessageModel> messages = await MessageService.GetMessages();
 
-                List = response.Data;
+                List = messages.ToList();
             }
             catch (Exception)
             {

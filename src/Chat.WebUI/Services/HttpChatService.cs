@@ -1,28 +1,31 @@
 ﻿using System.Net.Http.Json;
 
+using Chat.Domain.Message;
 using Chat.Domain.Message.Add;
 using Chat.Domain.Message.GetAll;
+using Chat.Domain.User;
 using Chat.Domain.User.GetByUsername;
 using Chat.WebUI.Services.Contracts;
 
 namespace Chat.WebUI.Services
 {
-    public class ChatService : IChatService
+    public class HttpChatService : IChatService
     {
         private readonly HttpClient _httpClient;
 
-        public ChatService(HttpClient httpClient)
+        public HttpChatService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<GetMessagesResponse> GetMessages()
+        public async Task<IEnumerable<MessageModel>> GetMessages()
         {
             try
             {
-                GetMessagesResponse? messages =
+                GetMessagesResponse response =
                     await _httpClient.GetFromJsonAsync<GetMessagesResponse>("Messages");
-                return messages;
+
+                return response?.Data ?? [];
             }
             catch (Exception e)
             {
@@ -31,13 +34,13 @@ namespace Chat.WebUI.Services
             }
         }
 
-        public async Task<GetUserByUsernameResponse?> GetUserProfile(string username)
+        public async Task<UserModel?> GetUserProfile(string username)
         {
             try
             {
                 GetUserByUsernameResponse? user =
                     await _httpClient.GetFromJsonAsync<GetUserByUsernameResponse>($"Users/UserName/{username}");
-                return user;
+                return user?.Data;
             }
             catch (HttpRequestException e)
             {
@@ -49,7 +52,7 @@ namespace Chat.WebUI.Services
             }
         }
 
-        public async Task<AddMessageResponse?> SendMessage(string inputMessage)
+        public async Task<MessageModel?> SendMessage(string inputMessage)
         {
 
             try
@@ -66,7 +69,7 @@ namespace Chat.WebUI.Services
 
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadFromJsonAsync<AddMessageResponse>();
+                return await response.Content.ReadFromJsonAsync<MessageModel>();
 
             }
             catch (HttpRequestException e)
