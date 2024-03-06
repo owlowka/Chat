@@ -11,7 +11,7 @@ namespace Chat.WebUI.Pages
 
 
         [Inject]
-        private IMessageService MessageService { get; set; }
+        private IChatService MessageService { get; set; }
 
         public async Task StartSendingAsync()
         {

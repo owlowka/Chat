@@ -11,7 +11,7 @@ namespace Chat.WebUI.Pages
         private string _userName;
 
         [Inject]
-        public IMessageService MessageService { get; set; }
+        public IChatService MessageService { get; set; }
 
         public string? UserName
         {

@@ -7,11 +7,11 @@ using Chat.WebUI.Services.Contracts;
 
 namespace Chat.WebUI.Services
 {
-    public class MessageService : IMessageService
+    public class ChatService : IChatService
     {
         private readonly HttpClient _httpClient;
 
-        public MessageService(HttpClient httpClient)
+        public ChatService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

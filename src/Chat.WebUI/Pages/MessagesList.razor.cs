@@ -14,7 +14,7 @@ namespace Chat.WebUI.Pages
         protected bool _refreshing = false;
 
         [Inject]
-        private IMessageService MessageService { get; set; }
+        private IChatService MessageService { get; set; }
 
         public async Task RefreshMessagesAsync()
         {
