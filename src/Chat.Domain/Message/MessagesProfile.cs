@@ -10,6 +10,8 @@ namespace Chat.Domain.Message
     {
         public MessagesProfile()
         {
+            //sender, content
+
             CreateMap<AddMessageRequest, MessageEntity>()
                 .ForMember(x => x.CreatedAt, y => y.MapFrom(z => z.CreatedAt))
                 .ForMember(x => x.Content, y => y.MapFrom(z => z.Content))

@@ -1,6 +1,5 @@
-﻿namespace Chat.WebUI.Pages
-{
-    public class ConversationMessageInput
-    {
-    }
+﻿
+.conversationMessageInput {
+    border: 5px dotted #00ffff;
+    border-radius: 10px;
 }

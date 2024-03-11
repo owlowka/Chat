@@ -38,9 +38,9 @@ namespace Chat.WebUI.Services
         {
             try
             {
-                GetUserByUsernameResponse? user =
+                GetUserByUsernameResponse? response =
                     await _httpClient.GetFromJsonAsync<GetUserByUsernameResponse>($"Users/UserName/{username}");
-                return user?.Data;
+                return response?.Data;
             }
             catch (HttpRequestException e)
             {
@@ -52,7 +52,7 @@ namespace Chat.WebUI.Services
             }
         }
 
-        public async Task<MessageModel?> SendMessage(string inputMessage)
+        public async Task SendMessage(string inputMessage)
         {
 
             try
@@ -69,17 +69,26 @@ namespace Chat.WebUI.Services
 
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadFromJsonAsync<MessageModel>();
+                await response.Content.ReadFromJsonAsync<AddMessageResponse>();
 
             }
             catch (HttpRequestException e)
             {
-                return null;
+                Console.WriteLine("\nMessage ---\n{0}", e.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Console.WriteLine("\nMessage ---\n{0}", ex.Message);
+                Console.WriteLine(
+                    "\nHelpLink ---\n{0}", ex.HelpLink);
+                Console.WriteLine("\nSource ---\n{0}", ex.Source);
+                Console.WriteLine(
+                    "\nStackTrace ---\n{0}", ex.StackTrace);
+                Console.WriteLine(
+                    "\nTargetSite ---\n{0}", ex.TargetSite);
                 throw;
             }
         }
     }
 }
+

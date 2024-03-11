@@ -2,7 +2,7 @@
 
 namespace Chat.Domain.Message.Add
 {
-    public class AddMessageResponse : ResponseBase<MessageModel>
+    public class AddMessageResponse : ResponseBase<bool>
     {
 
     }

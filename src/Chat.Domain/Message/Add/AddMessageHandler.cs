@@ -33,7 +33,7 @@ namespace Chat.Domain.Message.Add
 
             return new AddMessageResponse()
             {
-                Data = _mapper.Map<MessageModel>(messageFromDb)
+                Data = true
             };
         }
     }

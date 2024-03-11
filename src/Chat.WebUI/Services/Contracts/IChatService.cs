@@ -7,6 +7,6 @@ namespace Chat.WebUI.Services.Contracts
     {
         Task<IEnumerable<MessageModel>> GetMessages();
         Task<UserModel?> GetUserProfile(string useName);
-        Task<MessageModel?> SendMessage(string inputMessage);
+        Task SendMessage(string inputMessage);
     }
 }

@@ -9,7 +9,6 @@ namespace Chat.WebUI.Pages
         protected bool _sending = false;
         protected string? _value;
 
-
         [Inject]
         private IChatService MessageService { get; set; }
 
