@@ -10,7 +10,9 @@ namespace Chat.Domain.Message.GetAll
     {
         public override Task<List<MessageEntity>> Execute(ChatStorageContext context)
         {
-            return context.Messages.ToListAsync();
+            return context.Messages
+                .Include(m => m.Sender)
+                .ToListAsync();
         }
     }
 }

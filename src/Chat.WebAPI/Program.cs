@@ -119,6 +119,18 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
 {
     ISender sender = scope.ServiceProvider.GetRequiredService<IMediator>();
 
+    IEnumerable<AddUserRequest> userRequests = RandomNameGenerator.Names
+        .Select(userName => new AddUserRequest
+        {
+            Username = userName,
+            Name = $"I am {userName}"
+        });
+
+    foreach (AddUserRequest? request in userRequests)
+    {
+        await sender.Send(request);
+    }
+
     IEnumerable<AddMessageRequest> requests = Enumerable
         .Range(0, 10)
         .Select(i => new AddMessageRequest
@@ -129,18 +141,6 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
         });
 
     foreach (AddMessageRequest? request in requests)
-    {
-        await sender.Send(request);
-    }
-
-    IEnumerable<AddUserRequest> userRequests = RandomNameGenerator.Names
-    .Select(userName => new AddUserRequest
-    {
-        Username = userName,
-        Name = $"I am {userName}"
-    });
-
-    foreach (AddUserRequest? request in userRequests)
     {
         await sender.Send(request);
     }

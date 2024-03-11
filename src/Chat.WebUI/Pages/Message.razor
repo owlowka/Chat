@@ -3,7 +3,7 @@
 @if (IsSentByCurrentUser)
 {
     <div class="message isSentByCurrentUser">
-        <p class="sender">@Model.Sender</p>
+        <p class="sender">@Model.Sender.Username</p>
         <p class="createdAt">@Model.CreatedAt</p>
         <p class="content">@Model.Content</p>
     </div>
@@ -11,7 +11,7 @@
 else
 {
     <div class="message">
-        <p class="sender">@Model.Sender</p>
+        <p class="sender">@Model.Sender.Username</p>
         <p class="createdAt">@Model.CreatedAt</p>
         <p class="content">@Model.Content</p>
     </div>
