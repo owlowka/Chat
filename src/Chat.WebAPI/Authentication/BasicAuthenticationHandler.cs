@@ -72,7 +72,6 @@ namespace Chat.WebAPI.Authentication
 
             var claims = new[] {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Upn, user.Username),
                 new Claim(ClaimTypes.Hash, user.Password),
                 new Claim(ClaimTypes.Role, Enum.GetName(user.Role)!),

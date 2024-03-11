@@ -123,7 +123,6 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
         .Select(userName => new AddUserRequest
         {
             Username = userName,
-            Name = $"I am {userName}"
         });
 
     foreach (AddUserRequest? request in userRequests)

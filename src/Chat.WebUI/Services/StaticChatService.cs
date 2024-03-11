@@ -15,7 +15,7 @@ namespace Chat.WebUI.Services
                     Content = "test",
                     Sender = new()
                     {
-                        Name = "sender"
+                        Username = "sender"
                     }
                 }
             ];

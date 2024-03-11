@@ -7,7 +7,7 @@ namespace Chat.Domain.User.Add
 
         public AddUserRequestValidator()
         {
-            RuleFor(x => x.Name).InjectValidator()
+            RuleFor(x => x.Username).InjectValidator()
                 .MaximumLength(10)
                 .WithMessage(" Oj zły zakres zły");
         }

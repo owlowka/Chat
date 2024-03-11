@@ -6,11 +6,7 @@ namespace Chat.Domain.User
     {
         public Guid Id { get; set; }
 
-        public required string Name { get; set; }
-
         public ICollection<ConversationModel> Conversations { get; set; }
-
-        public string Surname { get; set; }
 
         public string Username { get; set; }
 

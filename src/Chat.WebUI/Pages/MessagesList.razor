@@ -10,7 +10,7 @@
 
     @foreach (var message in List)
     {
-        bool isSentByCurrentUser = message.Sender?.Name == "Alice";
+        bool isSentByCurrentUser = message.Sender?.Username == "Alice";
 
         <Message Model = "@message" IsSentByCurrentUser = "@isSentByCurrentUser" />
     }
