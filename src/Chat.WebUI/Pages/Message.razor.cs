@@ -12,7 +12,14 @@ namespace Chat.WebUI.Pages
         [Parameter]
         public required bool IsSentByCurrentUser { get; set; }
 
-       
-        public bool visible = false;
+        public bool visible = true;
+        protected string _messageClass = String.Empty;
+
+        protected override Task OnInitializedAsync()
+        {
+            _messageClass = IsSentByCurrentUser ? "currentUser" : "otherUser";
+
+            return base.OnInitializedAsync();
+        }
     }
 }

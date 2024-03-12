@@ -1,36 +1,16 @@
 ﻿@inherits MessageBase
 
-@if (IsSentByCurrentUser)
-{
-    @* <div class="currentUser" style="display:flex; flex-direction: row-reverse;"> *@
-    <div class="currentUser" align="left">
-
-            <FluentCard Height="200px" Width="300px">
-                <div class="currentUser-info">
-                    <p class="sender">@Model.Sender.Username</p>
-                    <p class="createdAt">@Model.CreatedAt</p>
-                </div>
-                <div class="currentUser-content">
-                    <p>@Model.Content</p>
-                </div>
-            </FluentCard>
-            <p>STATUS</p>
-    </div>
-}
-else
-{
-    @* <div class="otherUser" style="display:flex; flex-direction: row;"> *@
-    <div class="otherUser" align="right">
-        <FluentCard Height="200px" Width="300px">
-                <div class="otherUser-info">
-                <p class="sender">@Model.Sender.Username</p>
-                <p class="createdAt">@Model.CreatedAt</p>
-            </div>
-                <div class="otherUser-content">
-                    <p>@Model.Content</p>
-                </div>
-        </FluentCard>
-
-        <p>STATUS</p>
-    </div>
-}
+<div class="message" align="@(IsSentByCurrentUser ? "right" : "left")">
+    <FluentCard Height="100px"
+                Width="300px"
+                Class="@($"message {_messageClass}")">
+        <div class="content">
+            <p>@Model.Content</p>
+        </div>
+        <div class="info">
+            <p class="sender">@Model.Sender.Username</p>
+            <p class="createdAt">@Model.CreatedAt</p>
+        </div>
+    </FluentCard>
+    <p>STATUS</p>
+</div>

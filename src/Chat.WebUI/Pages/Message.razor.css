@@ -1,50 +1,59 @@
 ﻿
-.currentUser {
-    /*overlay*/
-    background-color: aquamarine;
-    border-radius: 5px;
-    color: black;
+.message {
     padding: 5px;
     margin: 3px 1px;
+    border-radius: 5px;
+}
+
+.currentUser {
+    background-color: aquamarine;
+    color: black;
 }
 
 .otherUser {
     background-color: pink;
-    border-radius: 5px;
     color: black;
-    padding: 5px;
-    margin: 3px 1px;
 }
 
-.currentUser-info{
+.info {
+    visibility: visible;
     color: darkgray;
     text-align: right;
-    background-color: #808080;
-    visibility: visible;
+    block-size: 20%;
+    opacity: 0,9;
+    position: absolute;
+    bottom: 5%;
+    z-index: 1;
+    display: flex;
 }
 
-.otherUser-info {
-    text-align: left;
-    background-color: #808080;
-    visibility: visible;
-}
-
-.currentUser-content {
-    text-align: right;
+.content {
     block-size: 80px;
     border: solid;
     border-radius: 50px 10px;
-    border-block-color: aquamarine;
-    color: darkgreen;
-    box-shadow: 20px 20px 50px 10px aquamarine inset;
+    position: relative;
 }
 
-.otherUser-content {
+.currentUser .content {
+    text-align: right;
+    border-color: aquamarine;
+    color: darkgreen;
+    box-shadow: 20px 20px 50px 20px aquamarine inset;
+}
+
+.otherUser .content {
     text-align: left;
-    block-size: 80px;
-    border: solid;
-    border-radius: 10px 50px;
-    border-block-color: pink;
+    border-color: pink;
     color: darkmagenta;
-    box-shadow: 20px 20px 50px 10px pink inset;
+    box-shadow: 20px 20px 50px 20px pink inset;
+}
+
+@keyframes mymove {
+    from {
+        bottom: 0px;
+    }
+
+    to {
+        bottom: 30px;
+    }
 }
