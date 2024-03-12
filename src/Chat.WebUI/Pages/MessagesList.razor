@@ -4,10 +4,6 @@
 
 @if (List is [_, ..])
 {
-    @*Bootstrap*@
-    @*MessageList*@
-    @*ListaItem*@
-
     @foreach (var message in List)
     {
         bool isSentByCurrentUser = message.Sender?.Username == "Alice";

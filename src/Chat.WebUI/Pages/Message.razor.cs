@@ -11,5 +11,8 @@ namespace Chat.WebUI.Pages
 
         [Parameter]
         public required bool IsSentByCurrentUser { get; set; }
+
+       
+        public bool visible = false;
     }
 }

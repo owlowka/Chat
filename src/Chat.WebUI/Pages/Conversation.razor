@@ -9,8 +9,6 @@
 <div class="conversationContainer">
     <input type="text" @bind="UserName" @bind:after="RefreshUser" />
 
-    @*<h1><b>Conversation container @UserName</b></h1>*@
-
     @if (User is not null)
     {
         <ConversationHeader Model="@User" />
@@ -23,8 +21,6 @@
         }
         else
         {
-            <h3 class="mb-5">Messages</h3>
-
             <MessagesList/>
         }
     </div>
