@@ -12,14 +12,22 @@ namespace Chat.WebUI.Pages
         [Parameter]
         public required bool IsSentByCurrentUser { get; set; }
 
-        public bool visible = true;
-        protected string _messageClass = String.Empty;
+        protected bool IsInfoVisible { get; set; } = false;
+
+        protected string? MessageClass { get; set; }
 
         protected override Task OnInitializedAsync()
         {
-            _messageClass = IsSentByCurrentUser ? "currentUser" : "otherUser";
+            MessageClass = IsSentByCurrentUser ? "currentUser" : "otherUser";
 
             return base.OnInitializedAsync();
+        }
+
+        protected void ToggleInfoVisibility()
+        {
+            IsInfoVisible = !IsInfoVisible;
+            Console.WriteLine($"ToggleInfoVisibility {IsInfoVisible}");
+            StateHasChanged();
         }
     }
 }

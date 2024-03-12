@@ -3,14 +3,16 @@
 <div class="message" align="@(IsSentByCurrentUser ? "right" : "left")">
     <FluentCard Height="100px"
                 Width="300px"
-                Class="@($"message {_messageClass}")">
+                Class="@($"message {MessageClass}")"
+                @onclick="ToggleInfoVisibility">
         <div class="content">
             <p>@Model.Content</p>
         </div>
-        <div class="info">
+        <div
+            class="info"
+            style="@(IsInfoVisible ? "visibility: visible" : "visibility: collapse")">@* refactor to css class *@
             <p class="sender">@Model.Sender.Username</p>
             <p class="createdAt">@Model.CreatedAt</p>
         </div>
     </FluentCard>
-    <p>STATUS</p>
 </div>
