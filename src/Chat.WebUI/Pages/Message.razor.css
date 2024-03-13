@@ -19,19 +19,31 @@
     visibility: visible;
     color: darkgray;
     text-align: right;
-    block-size: 20%;
+    block-size: 20px;
     opacity: 0,9;
-    position: absolute;
+    position: relative;
     bottom: 5%;
-    z-index: 1;
+    z-index: 0;
     display: flex;
 }
 
+p {
+    margin: 0px;
+    padding: 2px;
+}
+
 .content {
-    block-size: 80px;
+    block-size: auto;
     border: solid;
-    border-radius: 50px 10px;
+    margin: 0px;
+    padding: 10px;
     position: relative;
+    text-align: justify;
+    align-items: center; /* Vertically center the content */
+    word-wrap: break-word;
+    z-index: 1;
+    bottom: 5%;
+    animation: mymove;
 }
 
 .currentUser .content {
@@ -39,6 +51,9 @@
     border-color: aquamarine;
     color: darkgreen;
     box-shadow: 20px 20px 50px 20px aquamarine inset;
+    border-radius: 30px 10px;
+    display: flex;
+    justify-content: right; /* Horizontally center the content */
 }
 
 .otherUser .content {
@@ -46,14 +61,11 @@
     border-color: pink;
     color: darkmagenta;
     box-shadow: 20px 20px 50px 20px pink inset;
+    border-radius: 10px 30px;
 }
 
 @keyframes mymove {
-    from {
-        bottom: 0px;
-    }
-
-    to {
-        bottom: 30px;
+    50% {
+        opacity: 0;
     }
 }

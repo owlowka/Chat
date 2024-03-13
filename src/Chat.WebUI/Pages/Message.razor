@@ -1,7 +1,7 @@
 ﻿@inherits MessageBase
 
 <div class="message" align="@(IsSentByCurrentUser ? "right" : "left")">
-    <FluentCard Height="100px"
+    <FluentCard Height="auto"
                 Width="300px"
                 Class="@($"message {MessageClass}")"
                 @onclick="ToggleInfoVisibility">
