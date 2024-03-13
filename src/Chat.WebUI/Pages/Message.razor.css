@@ -27,6 +27,13 @@
     display: flex;
 }
 
+.icon {
+    position: relative;
+    z-index: 3;
+    bottom: -15px;
+    right: 10px;
+}
+
 p {
     margin: 0px;
     padding: 2px;

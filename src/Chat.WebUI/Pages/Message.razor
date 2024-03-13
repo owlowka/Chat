@@ -5,14 +5,25 @@
                 Width="300px"
                 Class="@($"message {MessageClass}")"
                 @onclick="ToggleInfoVisibility">
-        <div class="content">
-            <p>@Model.Content</p>
-        </div>
-        <div
-            class="info"
-            style="@(IsInfoVisible ? "visibility: visible" : "visibility: collapse")">@* refactor to css class *@
-            <p class="sender">@Model.Sender.Username</p>
-            <p class="createdAt">@Model.CreatedAt</p>
-        </div>
+            @if (IsSentByCurrentUser == false)
+            {
+                <div class="icon">
+                    <FluentPersona Name="@Model.Sender.Username"
+                                   Status="PresenceStatus.Available"
+                                   StatusSize="PresenceBadgeSize.Small"
+                                   StatusTitle="He is available"
+                                   ImageSize="30px">
+                    </FluentPersona>
+                </div>
+            }
+            <div class="content">
+                <p>@Model.Content</p>
+            </div>
+        @* refactor to css class *@
+            <div
+                class="info"
+                style="@(IsInfoVisible ? "visibility: visible" : "visibility: collapse")">
+                <p class="createdAt">@Model.CreatedAt</p>
+            </div>
     </FluentCard>
 </div>
