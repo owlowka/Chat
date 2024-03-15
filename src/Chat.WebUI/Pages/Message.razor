@@ -5,7 +5,7 @@
                 Width="300px"
                 Class="@($"message {MessageClass}")"
                 @onclick="ToggleInfoVisibility">
-            @if (IsSentByCurrentUser == false)
+            @if (!IsSentByCurrentUser)
             {
                 <div class="icon">
                     <FluentPersona Name="@Model.Sender.Username"
@@ -19,11 +19,11 @@
             <div class="content">
                 <p>@Model.Content</p>
             </div>
-        @* refactor to css class *@
-            <div
-                class="info"
-                style="@(IsInfoVisible ? "visibility: visible" : "visibility: collapse")">
-                <p class="createdAt">@Model.CreatedAt</p>
-            </div>
+            @if (IsInfoVisible)
+            {
+                <div class="info">
+                    <p class="createdAt">@Model.CreatedAt</p>
+                </div>
+            }
     </FluentCard>
 </div>
