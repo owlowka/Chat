@@ -7,6 +7,8 @@ using Chat.Domain.User;
 using Chat.Domain.User.GetByUsername;
 using Chat.WebUI.Services.Contracts;
 
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 namespace Chat.WebUI.Services
 {
     public class HttpChatService : IChatService
@@ -52,14 +54,14 @@ namespace Chat.WebUI.Services
             }
         }
 
-        public async Task SendMessage(string inputMessage)
+        public async Task SendMessage(string inputMessage, string senderName)
         {
 
             try
             {
                 AddMessageRequest request = new()
                 {
-                    Sender = "Bob",
+                    Sender = senderName,
                     Content = inputMessage,
                     CreatedAt = DateTime.Now
                 };

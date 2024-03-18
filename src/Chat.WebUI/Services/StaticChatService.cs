@@ -26,7 +26,7 @@ namespace Chat.WebUI.Services
             throw new NotImplementedException();
         }
 
-        Task IChatService.SendMessage(string inputMessage)
+        Task IChatService.SendMessage(string inputMessage, string senderName)
         {
             throw new NotImplementedException();
         }
