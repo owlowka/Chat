@@ -14,6 +14,8 @@ namespace Chat.Domain.User
 
         public string Password { get; set; }
 
+        public string Picture { get; set; }
+
         public DomainRole Role { get; set; }
     }
 }

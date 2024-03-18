@@ -1,4 +1,5 @@
-﻿namespace Chat.DataAccess.Entities
+﻿
+namespace Chat.DataAccess.Entities
 {
     public class UserEntity : EntityBase
     {
