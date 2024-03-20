@@ -18,7 +18,7 @@ namespace Chat.WebAPI.Authentication
     {
         public const string SchemaName = "BasicAuthentication";
 
-        private readonly IQueryExecutor queryExecutor;
+        private readonly IQueryExecutor _queryExecutor;
 
         public BasicAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
@@ -28,7 +28,7 @@ namespace Chat.WebAPI.Authentication
             IQueryExecutor queryExecutor)
             : base(options, logger, encoder, clock)
         {
-            this.queryExecutor = queryExecutor;
+            this._queryExecutor = queryExecutor;
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -57,7 +57,7 @@ namespace Chat.WebAPI.Authentication
                 {
                     Username = username
                 };
-                user = await this.queryExecutor.Execute(query);
+                user = await this._queryExecutor.Execute(query);
 
                 // TODO: HASH!
                 if (user == null || user.Password != password)

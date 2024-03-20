@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ApiControllerBase
@@ -37,7 +37,7 @@ namespace Chat.WebAPI.Controllers
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost]
         [Route("")]
         public Task<ActionResult<AddUserResponse>> AddUser([FromBody] AddUserRequest request)
