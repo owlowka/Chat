@@ -16,6 +16,7 @@ using FluentValidation.AspNetCore;
 using MediatR;
 
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -79,10 +80,16 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddControllers();
 
+//1
 builder.Services.AddDbContext<ChatStorageContext>(options =>
-{
-    options.UseInMemoryDatabase("chatDatabase");
-});
+    options.UseInMemoryDatabase("chatDatabase"));
+//2
+builder.Services.AddAuthorization();
+
+//3
+builder.Services
+    .AddIdentityApiEndpoints<IdentityUser<Guid>>()
+    .AddEntityFrameworkStores<ChatStorageContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -112,7 +119,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapIdentityApi<IdentityUser<Guid>>();
+
+app.MapControllers()
+   .RequireAuthorization();
 
 
 await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())

@@ -1,13 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Chat.DataAccess.Entities;
+﻿using Chat.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Chat.DataAccess
 {
-    public class ChatStorageContext : DbContext
+    public class ChatStorageContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
         public ChatStorageContext(DbContextOptions<ChatStorageContext> options)
             : base(options)
         {
+            //new ChatStorageContext(default);
         }
 
         public DbSet<MessageEntity> Messages { get; set; }
@@ -15,6 +18,5 @@ namespace Chat.DataAccess
         public DbSet<ConversationEntity> Conversations { get; set; }
 
         public DbSet<UserEntity> Users { get; set; }
-
     }
 }
