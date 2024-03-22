@@ -121,8 +121,23 @@ app.UseAuthorization();
 
 app.MapIdentityApi<IdentityUser<Guid>>();
 
+//app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
+//    [FromBody] object empty) =>
+//{
+//    if (empty != null)
+//    {
+//        await signInManager.SignOutAsync();
+//        return Results.Ok();
+//    }
+//    return Results.Unauthorized();
+//})
+//.WithOpenApi()
+//.RequireAuthorization();
+
 app.MapControllers()
    .RequireAuthorization();
+
+
 
 
 await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
