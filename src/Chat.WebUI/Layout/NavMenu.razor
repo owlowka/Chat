@@ -15,11 +15,6 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="chat">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Chat
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
             </NavLink>
@@ -29,6 +24,30 @@
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="chat">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Chat
+            </NavLink>
+        </div>
+        <AuthorizeView>
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="private-page">
+                        <span class="bi bi-key" aria-hidden="true"></span> Private Page
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="private-manager-page">
+                        <span class="bi bi-key" aria-hidden="true"></span> Private Manager Page
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="private-editor-page">
+                        <span class="bi bi-key" aria-hidden="true"></span> Private Editor Page
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
     </nav>
 </div>
 

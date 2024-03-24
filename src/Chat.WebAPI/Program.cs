@@ -150,6 +150,10 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
             Username = userName,
         });
 
+    //UserManager manager;
+
+    //Check Identity how to regiseter user
+
     foreach (AddUserRequest? request in userRequests)
     {
         await sender.Send(request);

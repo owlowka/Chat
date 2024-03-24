@@ -7,8 +7,6 @@ using Chat.Domain.User;
 using Chat.Domain.User.GetByUsername;
 using Chat.WebUI.Services.Contracts;
 
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
 namespace Chat.WebUI.Services
 {
     public class HttpChatService : IChatService

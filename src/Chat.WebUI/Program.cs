@@ -1,28 +1,33 @@
 using Chat.WebUI;
+using Chat.WebUI.Services;
+using Chat.WebUI.Services.Contracts;
 
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
-using IChatService = Chat.WebUI.Services.Contracts.IChatService;
-using HttpChatService = Chat.WebUI.Services.HttpChatService;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
-
-//builder.Services.AddScoped(sp =>
-//new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-builder.Services.AddScoped(sp =>
-    new HttpClient { BaseAddress = new Uri("https://localhost:7011/") });
-builder.Services.AddScoped<IChatService, HttpChatService>();
-builder.Services.AddFluentUIComponents();
-
-builder.Services.AddOidcAuthentication(options =>
+internal class Program
 {
-    // Configure your authentication provider options here.
-    // For more information, see https://aka.ms/blazor-standalone-auth
-    builder.Configuration.Bind("Local", options.ProviderOptions);
-});
+    private static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.RootComponents.Add<App>("#app");
+        builder.RootComponents.Add<HeadOutlet>("head::after");
 
-await builder.Build().RunAsync();
+        builder.Services.AddScoped(sp =>
+            new HttpClient { BaseAddress = new Uri("https://localhost:7011/") });
+        builder.Services.AddScoped<IChatService, HttpChatService>();
+        builder.Services.AddFluentUIComponents();
+
+        builder.Services.AddMsalAuthentication(options =>
+        {
+            builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+            options.ProviderOptions.LoginMode = "redirect";
+            options.ProviderOptions.DefaultAccessTokenScopes.Add("openid");
+            //options.ProviderOptions.DefaultAccessTokenScopes.Add("profile");
+            options.ProviderOptions.DefaultAccessTokenScopes.Add("offline_access");
+        });
+
+        await builder.Build().RunAsync();
+    }
+}
