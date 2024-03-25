@@ -1,5 +1,6 @@
 ﻿@page "/chat"
 @inherits ConversationBase
+@attribute [Authorize]
 @using Chat.Domain.Message
 @using Chat.Domain.Message.GetAll;
 @using Chat.Domain.User

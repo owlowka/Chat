@@ -6,7 +6,7 @@
 {
     @foreach (var message in List)
     {
-        bool isSentByCurrentUser = message.Sender?.Username == "Alice";
+        bool isSentByCurrentUser = message.Sender?.Username == AuthenticatedUser.Identity?.Name;
 
         <Message Model="@message" IsSentByCurrentUser="@isSentByCurrentUser" />
     }

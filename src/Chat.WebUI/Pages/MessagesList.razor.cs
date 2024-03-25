@@ -1,13 +1,21 @@
-﻿using Chat.Domain.Message;
-using Chat.Domain.Message.GetAll;
+﻿using System.Security.Claims;
+
 using Chat.WebUI.Services.Contracts;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+
+using Chat.Domain.Message;
 
 namespace Chat.WebUI.Pages
 {
     public class MessageListBase : ComponentBase
     {
+        [CascadingParameter]
+        private Task<AuthenticationState> AuthenticationState { get; set; }
+
+        public ClaimsPrincipal AuthenticatedUser { get; set; }
+
         [Parameter]
         public required List<MessageModel>? List { get; set; }
 
@@ -38,6 +46,8 @@ namespace Chat.WebUI.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            AuthenticatedUser = (await AuthenticationState).User;
+
             await RefreshMessagesAsync();
         }
     }
