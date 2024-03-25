@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inherits NavMenuBase
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Chat.WebUI</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -29,35 +31,5 @@
                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Chat
             </NavLink>
         </div>
-        <AuthorizeView>
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="private-page">
-                        <span class="bi bi-key" aria-hidden="true"></span> Private Page
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="private-manager-page">
-                        <span class="bi bi-key" aria-hidden="true"></span> Private Manager Page
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="private-editor-page">
-                        <span class="bi bi-key" aria-hidden="true"></span> Private Editor Page
-                    </NavLink>
-                </div>
-            </Authorized>
-        </AuthorizeView>
     </nav>
 </div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
