@@ -3,8 +3,6 @@ using Chat.Domain.Conversation.GetAll;
 using Chat.Domain.Conversation.GetByName;
 
 using MediatR;
-
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
@@ -36,7 +34,6 @@ namespace Chat.WebAPI.Controllers
             return HandleRequest<GetConversationByNameRequest, GetConversationByNameResponse>(request);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         [Route("")]
         public Task<ActionResult<AddConversationResponse>> AddConversation([FromBody] AddConversationRequest request)

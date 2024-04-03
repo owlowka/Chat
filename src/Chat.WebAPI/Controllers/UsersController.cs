@@ -7,12 +7,10 @@ using Chat.Domain.User.GetByUsername;
 
 using MediatR;
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chat.WebAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ApiControllerBase
@@ -28,7 +26,6 @@ namespace Chat.WebAPI.Controllers
             _logger.LogDebug(1, "Nlog injected into UsersController");
         }
 
-        //[AllowAnonymous]
         [HttpGet]
         [Route("")]
         public Task<ActionResult<GetUsersResponse>> GetAllUsers([FromQuery] GetUsersRequest request)
@@ -37,7 +34,6 @@ namespace Chat.WebAPI.Controllers
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 
-        //[AllowAnonymous]
         [HttpPost]
         [Route("")]
         public Task<ActionResult<AddUserResponse>> AddUser([FromBody] AddUserRequest request)

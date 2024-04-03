@@ -26,8 +26,6 @@ using NLog.Web;
 
 using RestSharp;
 
-
-
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseNLog();
@@ -48,9 +46,9 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 
-builder.Services.AddAuthentication(BasicAuthenticationHandler.SchemaName)
-    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(
-    BasicAuthenticationHandler.SchemaName, null);
+//builder.Services.AddAuthentication(BasicAuthenticationHandler.SchemaName)
+//    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(
+//    BasicAuthenticationHandler.SchemaName, null);
 
 builder.Services.AddSingleton<PasswordHasher>();
 
@@ -134,8 +132,8 @@ app.MapIdentityApi<IdentityUser<Guid>>();
 //.WithOpenApi()
 //.RequireAuthorization();
 
-app.MapControllers()
-   .RequireAuthorization();
+app.MapControllers();
+   //.RequireAuthorization();
 
 
 
@@ -160,7 +158,7 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
     }
 
     IEnumerable<AddMessageRequest> requests = Enumerable
-        .Range(0, 10)
+        .Range(0, 3)
         .Select(i => new AddMessageRequest
         {
             Content = $"Test {i}",
@@ -178,7 +176,7 @@ app.Run();
 
 public class RandomNameGenerator
 {
-    public static readonly string[] Names = ["Alice", "Bob"];
+    public static readonly string[] Names = ["Roksana Duda", "Bob"];
 
     public static string GenerateRandomName() => Random.Shared.GetItems(Names, 1)[0];
 }
