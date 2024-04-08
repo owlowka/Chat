@@ -1,0 +1,13 @@
+﻿@page "/conversations"
+@inherits ConversationsListBase
+@attribute [Authorize]
+@using Chat.Domain.Conversation
+@using Chat.Domain.Conversation.GetAll
+@using Chat.Domain.User
+@using Chat.WebUI.Pages
+
+<h3>ConversationsList</h3>
+
+<div class="conversationsListContainer">
+    <FluentSearch @bind-Value=_value Label="With a label" />
+</div>

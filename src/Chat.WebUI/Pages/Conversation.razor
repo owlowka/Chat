@@ -2,9 +2,9 @@
 @inherits ConversationBase
 @attribute [Authorize]
 @using Chat.Domain.Message
-@using Chat.Domain.Message.GetAll;
+@using Chat.Domain.Message.GetAll
 @using Chat.Domain.User
-@using Chat.WebUI.Pages;
+@using Chat.WebUI.Pages
 
 <div class="conversationContainer">
     <FluentTextField @bind-Value="@UserName" Placeholder="Other User name" />
