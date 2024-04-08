@@ -158,7 +158,7 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
     }
 
     IEnumerable<AddMessageRequest> requests = Enumerable
-        .Range(0, 3)
+        .Range(0, 10)
         .Select(i => new AddMessageRequest
         {
             Content = $"Test {i}",

@@ -1,12 +1,38 @@
 ﻿
 .conversationMessageInput {
-    border: 5px dotted #00ffff;
+    align-items: center;
+    z-index: 1;
+    border: 5px dotted lightblue;
     border-radius: 10px;
+    color: lightblue;
 }
 
-/*.current {
+.icon {
+    display: flex;
+    justify-content: right;
+    z-index: 2;
     position: relative;
-    z-index: 3;
-    bottom: 0px;
-    right: 0px;
-}*/
+    left: 10px;
+    align-items: center;
+}
+
+.sendButton {
+    display: flex;
+    justify-content: right;
+    z-index: 2;
+    position: relative;
+    left: 10px;
+    align-items: center;
+    bottom: 70px;
+}
+
+.textInput {
+    block-size: auto;
+    margin: 0px;
+    padding: 10px;
+    position: relative;
+    text-align: justify;
+    z-index: 1;
+    align-items: center;
+    bottom: 40px;
+}

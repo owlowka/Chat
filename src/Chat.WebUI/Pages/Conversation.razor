@@ -6,9 +6,9 @@
 @using Chat.Domain.User
 @using Chat.WebUI.Pages;
 
-
 <div class="conversationContainer">
-    <input type="text" @bind="UserName" @bind:after="RefreshUser" />
+    <FluentTextField @bind-Value="@UserName" Placeholder="Other User name" />
+    @* <input type="text" @bind="UserName" @bind:after="RefreshUser" /> *@
 
     @if (User is not null)
     {
@@ -22,9 +22,8 @@
         }
         else
         {
-            <MessagesList/>
+            <MessagesList />
         }
     </div>
-
     <ConversationMessageInput />
 </div>

@@ -1,39 +1,55 @@
-﻿using Chat.Domain.Message;
+﻿using System.Security.Claims;
+
+using Chat.Domain.Message;
 using Chat.WebUI.Services.Contracts;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Chat.WebUI.Pages
 {
     public class ConversationMessageInputBase : ComponentBase
     {
+        [CascadingParameter]
+        private Task<AuthenticationState> AuthenticationState { get; set; }
+
         [Parameter]
         public required MessageModel Model { get; set; }
 
-        protected bool _sending = false;
-        protected string? _value;
-        protected string _username;
+        [Parameter]
+        public string? UserName { get; set; }
 
         [Inject]
         private IChatService MessageService { get; set; }
 
+        private ClaimsPrincipal? AuthenticatedUser { get; set; }
+
+        protected bool Sending { get; set; }
+
+        protected string? Value { get; set; }
+
         public async Task StartSendingAsync()
         {
-            _sending = true;
+            Sending = true;
 
             try
             {
-                if (_value is not null)
+                if (Value is not null)
                 {
-                    await MessageService.SendMessage(_value, _username);
+                    await MessageService.SendMessage(Value, UserName);
                 }
-                _value = null;
+                Value = null;
             }
             finally
             {
-                _sending = false;
+                Sending = false;
             }
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            AuthenticatedUser = (await AuthenticationState).User;
+            UserName ??= AuthenticatedUser.Identity?.Name;
         }
     }
 }

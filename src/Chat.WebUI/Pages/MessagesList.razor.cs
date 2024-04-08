@@ -46,7 +46,8 @@ namespace Chat.WebUI.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            AuthenticatedUser = (await AuthenticationState).User;
+            AuthenticationState authenticationState = await AuthenticationState;
+            AuthenticatedUser = authenticationState.User;
 
             await RefreshMessagesAsync();
         }

@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using System.Text.Json;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -23,7 +22,6 @@ namespace Chat.WebUI.Pages
             await base.OnInitializedAsync();
             AuthenticationState state = await AuthenticationState;
             AccessTokenResult accessTokenResult = await AuthorizationService.RequestAccessToken();
-
             if (!accessTokenResult.TryGetToken(out AccessToken? token))
             {
                 throw new InvalidOperationException(

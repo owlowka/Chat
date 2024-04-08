@@ -2,18 +2,28 @@
 
 <div class="conversationMessageInput">
 
-    <FluentTextArea @bind-Value=_value
-             Resize="TextAreaResize.Horizontal"
-             style="width: 100%;"
-             Placeholder="Aa"/>
+    <div class="icon">
+        <FluentPersona
+            @bind-Value=UserName
+            Image=@($"/Users/{UserName}.png")
+            ImageSize="50px"
+            Status="PresenceStatus.Available"
+            StatusTitle="She is available"
+            StatusSize="PresenceBadgeSize.Small" />
+    </div>
 
-    <FluentTextField @bind-Value=_username
-                    Resize="TextAreaResize.Horizontal"
-                    style="width: 100%;"
-                    Label="Current user:"
-                    Placeholder="Aa" />
+    <div class="textInput">
+        <FluentTextArea @bind-Value=Value
+                        Resize="TextAreaResize.Horizontal"
+                        style="width: 100%;"
+                        Placeholder="Aa" />
+        @* @onkeypress="@(args => args.Code == KeyCode.Enter.ToString())" *@
+    </div>
 
-    <FluentButton Loading="@_sending"
-                  OnClick="@StartSendingAsync"
-                  Appearance="Appearance.Accent">Send</FluentButton>
+    <div class="sendButton">
+        <FluentButton 
+            Loading="@Sending"
+            OnClick="@StartSendingAsync"
+            Appearance="Appearance.Accent">Send</FluentButton>
+    </div>
 </div>
