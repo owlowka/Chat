@@ -1,0 +1,25 @@
+﻿@page "/conversations"
+@inherits ConversationsBase
+@attribute [Authorize]
+@using Chat.Domain.Conversation
+@using Chat.Domain.Conversation.GetAll
+@using Chat.Domain.User
+@using Chat.WebUI.Pages
+
+<div class="conversationsContainer">
+    <FluentSearch @ref=_searchTest
+                  @bind-Value="@_searchValue"
+                  Placeholder="Search for Conversations" />
+    <p>You searched for: @_searchValue</p>
+    
+    <div class="conversationsList">
+        @if (Conversations == null)
+        {
+            <h3>Loading conversations...</h3>
+        }
+        else
+        {
+            <AvailableConversationsList />
+        }
+    </div>
+</div>
