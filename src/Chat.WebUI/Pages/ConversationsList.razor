@@ -1,0 +1,15 @@
+﻿@inherits ConversationsListBase
+
+<h3>ConversationsList</h3>
+
+@if (List is [_, ..])
+{
+    @foreach (var conversation in List)
+    {
+        <ConversationItem />
+    }
+}
+else
+{
+    <h2>No conversations Oo</h2>
+}
