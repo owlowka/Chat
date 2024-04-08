@@ -1,9 +1,9 @@
 ﻿using System.Security.Claims;
 
-using Chat.WebUI.Services.Contracts;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+
+using Chat.WebUI.Services.Contracts;
 
 using Chat.Domain.Message;
 

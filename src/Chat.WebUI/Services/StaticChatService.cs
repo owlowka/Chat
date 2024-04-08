@@ -1,4 +1,5 @@
-﻿using Chat.Domain.Message;
+﻿using Chat.Domain.Conversation;
+using Chat.Domain.Message;
 using Chat.Domain.User;
 using Chat.WebUI.Services.Contracts;
 
@@ -6,6 +7,11 @@ namespace Chat.WebUI.Services
 {
     public class StaticChatService : IChatService
     {
+        public Task<IEnumerable<ConversationModel>> GetConversations()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<MessageModel>> GetMessages()
         {
             return

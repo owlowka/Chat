@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Json;
 
+using Chat.Domain.Conversation;
+using Chat.Domain.Conversation.GetAll;
 using Chat.Domain.Message;
 using Chat.Domain.Message.Add;
 using Chat.Domain.Message.GetAll;
@@ -16,6 +18,22 @@ namespace Chat.WebUI.Services
         public HttpChatService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public async Task<IEnumerable<ConversationModel>> GetConversations()
+        {
+            try
+            {
+                GetConversationsResponse response =
+                    await _httpClient.GetFromJsonAsync<GetConversationsResponse>("Conversations");
+
+                return response?.Data ?? [];
+            }
+            catch (Exception e)
+            {
+                //Log exception
+                throw;
+            }
         }
 
         public async Task<IEnumerable<MessageModel>> GetMessages()
