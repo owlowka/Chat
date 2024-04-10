@@ -20,7 +20,7 @@ namespace Chat.WebUI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ConversationModel>> GetConversations()
+        public async Task<IEnumerable<ConversationModel>> GetConversationsForUserName()
         {
             try
             {

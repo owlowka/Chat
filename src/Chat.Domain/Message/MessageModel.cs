@@ -4,7 +4,7 @@ namespace Chat.Domain.Message
 {
     public class MessageModel
     {
-        public required UserModel Sender { get; set; }
+        public required string SenderName { get; set; }
 
         public Guid Id { get; set; }
 

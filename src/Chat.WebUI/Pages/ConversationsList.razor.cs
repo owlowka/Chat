@@ -22,7 +22,7 @@ namespace Chat.WebUI.Pages
 
             try
             {
-                IEnumerable<ConversationModel> conversations = await ConversationService.GetConversations();
+                IEnumerable<ConversationModel> conversations = await ConversationService.GetConversationsForUserName();
 
                 List = conversations.ToList();
             }

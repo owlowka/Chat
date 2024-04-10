@@ -1,4 +1,6 @@
-﻿using Chat.DataAccess;
+﻿using Azure.Core;
+
+using Chat.DataAccess;
 using Chat.DataAccess.Entities;
 using Chat.Domain.CQRS;
 
@@ -6,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chat.Domain.Conversation.GetAll
 {
-    public class GetConversationQuery : QueryBase<List<ConversationEntity>>
+    public class GetConversationsQuery : QueryBase<List<ConversationEntity>>
     {
+        public string? UserName { get; set; }
+
         public override Task<List<ConversationEntity>> Execute(ChatStorageContext context)
         {
             return context.Conversations
+                .Where(c => c.Users.Any(u => u.Username == UserName))
                 .Include(x => x.Messages)
                 .ToListAsync();
         }

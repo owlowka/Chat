@@ -6,8 +6,6 @@ namespace Chat.Domain.User
     {
         public Guid Id { get; set; }
 
-        public ICollection<ConversationModel> Conversations { get; set; }
-
         public string Username { get; set; }
 
         public int Age { get; set; }

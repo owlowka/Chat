@@ -12,9 +12,9 @@ namespace Chat.Domain.Conversation
         {
             CreateMap<GetConversationsRequest, ConversationEntity>()
                 .ForMember(x => x.Name, y => y
-                                .MapFrom(z => z.Name));
+                                .MapFrom(z => z.UserName));
 
-            CreateMap<GetConversationByNameRequest, ConversationEntity>()
+            CreateMap<GetConversationForUserNameRequest, ConversationEntity>()
                 .ForMember(x => x.Name, y => y
                                 .MapFrom(z => z.Name));
 

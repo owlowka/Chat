@@ -4,7 +4,7 @@ namespace Chat.Domain.Conversation.GetAll
 {
     public class GetConversationsRequest : IRequest<GetConversationsResponse>
     {
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
     }
 }

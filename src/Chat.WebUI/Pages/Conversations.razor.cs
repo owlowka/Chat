@@ -22,7 +22,8 @@ namespace Chat.WebUI.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Conversations = await HttpChatService.GetConversations();
+            //username from autentication as parameter
+            Conversations = await HttpChatService.GetConversationsForUserName();
         }
     }
 }

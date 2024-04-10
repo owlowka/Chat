@@ -7,7 +7,7 @@ namespace Chat.WebUI.Services
 {
     public class StaticChatService : IChatService
     {
-        public Task<IEnumerable<ConversationModel>> GetConversations()
+        public Task<IEnumerable<ConversationModel>> GetConversationsForUserName()
         {
             throw new NotImplementedException();
         }
@@ -19,10 +19,7 @@ namespace Chat.WebUI.Services
                 new()
                 {
                     Content = "test",
-                    Sender = new()
-                    {
-                        Username = "sender"
-                    }
+                    SenderName = "sender"
                 }
             ];
         }

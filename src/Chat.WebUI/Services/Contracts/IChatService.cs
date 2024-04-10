@@ -6,7 +6,7 @@ namespace Chat.WebUI.Services.Contracts
 {
     public interface IChatService
     {
-        Task<IEnumerable<ConversationModel>> GetConversations();
+        Task<IEnumerable<ConversationModel>> GetConversationsForUserName();
         Task<IEnumerable<MessageModel>> GetMessages();
         Task<UserModel?> GetUserProfile(string useName);
         Task SendMessage(string inputMessage, string senderName);

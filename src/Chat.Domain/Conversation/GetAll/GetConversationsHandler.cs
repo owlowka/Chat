@@ -20,13 +20,17 @@ namespace Chat.Domain.Conversation.GetAll
 
         public async Task<GetConversationsResponse> Handle(GetConversationsRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetConversationQuery();
+            var query = new GetConversationsQuery()
+            {
+                UserName = request.UserName
+            };
+
             List<ConversationEntity> conversations = await _queryExecutor.Execute(query);
-            List<ConversationModel> mappedConversation = _mapper.Map<List<ConversationModel>>(conversations);
+            List<ConversationModel> mappedConversations = _mapper.Map<List<ConversationModel>>(conversations);
 
             var response = new GetConversationsResponse()
             {
-                Data = mappedConversation
+                Data = mappedConversations
             };
 
             return response;

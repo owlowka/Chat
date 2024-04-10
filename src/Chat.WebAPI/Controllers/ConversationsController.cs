@@ -1,6 +1,8 @@
 ﻿using Chat.Domain.Conversation.Add;
 using Chat.Domain.Conversation.GetAll;
 using Chat.Domain.Conversation.GetByName;
+using Chat.Domain.Message;
+using Chat.Domain.User;
 
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +24,52 @@ namespace Chat.WebAPI.Controllers
         {
             return HandleRequest<GetConversationsRequest, GetConversationsResponse>(request);
         }
+
+        //[HttpGet]
+        //[Route("")]
+        //public async Task<ActionResult<GetConversationByNameResponse>> GetConversationsForUserName([FromRoute] string userName)
+        //{
+        //    return Ok(new GetConversationsResponse
+        //    {
+        //        Data =
+        //        [
+        //            new()
+        //            {
+        //                Messages = [
+        //                    new MessageModel()
+        //                    {
+        //                        Content = "",
+        //                        UserName = ""
+        //                    }],
+        //                Users = [
+        //                    new UserModel
+        //                    {
+        //                        Username = ""
+        //                    }]
+        //            },
+        //            new()
+        //            {
+        //                Messages = [
+        //                    new MessageModel()
+        //                    {
+        //                        Content = "",
+        //                        UserName = ""
+        //                    },
+        //                    new MessageModel()
+        //                    {
+        //                        Content = "",
+        //                        UserName = ""
+        //                    }],
+        //                Users = [
+        //                    new UserModel
+        //                    {
+        //                        Username = ""
+        //                    }]
+        //            }
+        //        ]
+        //    });
+        //}
+
 
         [HttpGet]
         [Route("{conversationName}")]
