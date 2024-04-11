@@ -14,7 +14,7 @@ namespace Chat.Domain.Conversation
                 .ForMember(x => x.Name, y => y
                                 .MapFrom(z => z.UserName));
 
-            CreateMap<GetConversationForUserNameRequest, ConversationEntity>()
+            CreateMap<GetConversationByNameRequest, ConversationEntity>()
                 .ForMember(x => x.Name, y => y
                                 .MapFrom(z => z.Name));
 
