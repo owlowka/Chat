@@ -9,13 +9,16 @@ namespace Chat.WebUI.Pages
 {
     public class ConversationsBase : ComponentBase
     {
+        [Parameter]
+        public string? UserName { get; set; } = "Roksana Duda";
+
         protected FluentSearch? _searchTest;
 
         protected string? _searchValue = string.Empty;
 
         public ConversationModel Conversation { get; set; }
 
-        public IEnumerable<ConversationModel> Conversations { get; set; }
+        public List<ConversationModel> Conversations { get; set; }
 
         [Inject]
         public IChatService HttpChatService { get; set; }
@@ -23,7 +26,7 @@ namespace Chat.WebUI.Pages
         protected override async Task OnInitializedAsync()
         {
             //username from autentication as parameter
-            Conversations = await HttpChatService.GetConversationsForUserName();
+            Conversations = (await HttpChatService.GetConversationsForUserName(UserName)).ToList();
         }
     }
 }

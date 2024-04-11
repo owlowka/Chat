@@ -9,6 +9,9 @@ using Chat.Domain.User;
 using Chat.Domain.User.GetByUsername;
 using Chat.WebUI.Services.Contracts;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
+
 namespace Chat.WebUI.Services
 {
     public class HttpChatService : IChatService
@@ -20,12 +23,16 @@ namespace Chat.WebUI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ConversationModel>> GetConversationsForUserName()
+        public async Task<IEnumerable<ConversationModel>> GetConversationsForUserName(string userName)
         {
             try
             {
+                string uri = UriHelper.BuildRelative(
+                    path: "/Conversations",
+                    query: QueryString.Create("UserName", userName));
+
                 GetConversationsResponse response =
-                    await _httpClient.GetFromJsonAsync<GetConversationsResponse>("Conversations");
+                    await _httpClient.GetFromJsonAsync<GetConversationsResponse>(uri);
 
                 return response?.Data ?? [];
             }
