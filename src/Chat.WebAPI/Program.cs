@@ -3,8 +3,10 @@ using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
 using Chat.ApplicationServices.Components.Password;
 using Chat.DataAccess;
+using Chat.Domain.Conversation.Add;
 using Chat.Domain.CQRS;
 using Chat.Domain.CQRS.Database;
+using Chat.Domain.Message;
 using Chat.Domain.Message.Add;
 using Chat.Domain.User;
 using Chat.Domain.User.Add;
@@ -167,6 +169,37 @@ await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
         });
 
     foreach (AddMessageRequest? request in requests)
+    {
+        await sender.Send(request);
+    }
+
+    IEnumerable<AddConversationRequest> conversationRequests = RandomNameGenerator.Names
+        .Select(userName => new AddConversationRequest
+        {
+            Name = userName,
+            Messages =
+            [
+                new MessageModel()
+                {
+                    Content = "Content",
+                    SenderName = userName,
+                    CreatedAt = DateTime.Now
+                }
+            ],
+            Users =
+            [
+                new UserModel
+                {
+                    Username = userName
+                },
+                new UserModel
+                {
+                    Username = "Roksana Duda"
+                }
+            ]
+        });
+
+    foreach (AddConversationRequest? request in conversationRequests)
     {
         await sender.Send(request);
     }
