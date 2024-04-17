@@ -8,7 +8,5 @@ namespace Chat.WebUI.Pages
     {
         [Parameter]
         public required ConversationModel Model { get; set; }
-
-
     }
 }

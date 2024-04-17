@@ -15,7 +15,7 @@
         </div>
         <div class="lastMessage">
 @*             //take last message from message list with sender and date or time *@
-            <p>@Model.Messages.Last()</p>
+            <p>@(Model.Messages.LastOrDefault() ?? "no messages")</p>
         </div>
     </FluentCard>
 </div>
