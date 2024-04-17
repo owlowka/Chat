@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using Chat.DataAccess.Entities;
+using Chat.Domain.Conversation.Add;
 using Chat.Domain.Conversation.GetAll;
 using Chat.Domain.Conversation.GetByName;
 
@@ -12,21 +13,30 @@ namespace Chat.Domain.Conversation
         {
             CreateMap<GetConversationsRequest, ConversationEntity>()
                 .ForMember(x => x.Name, y => y
-                                .MapFrom(z => z.UserName));
+                    .MapFrom(z => z.UserName));
 
             CreateMap<GetConversationByNameRequest, ConversationEntity>()
                 .ForMember(x => x.Name, y => y
-                                .MapFrom(z => z.Name));
+                    .MapFrom(z => z.Name));
+
+            CreateMap<AddConversationRequest, ConversationEntity>()
+                .ForMember(x => x.Name, y => y
+                    .MapFrom(z => z.Name))
+                .ForMember(x => x.Messages, y => y
+                    .MapFrom(z => z.Messages))
+                .ForMember(x => x.Users, y => y
+                    .MapFrom(z => z.Users));
+
 
             CreateMap<ConversationEntity, ConversationModel>()
                 .ForMember(x => x.Id, y => y
-                                .MapFrom(z => z.Id))
+                    .MapFrom(z => z.Id))
                 .ForMember(x => x.Name, y => y
-                                .MapFrom(z => z.Name))
+                    .MapFrom(z => z.Name))
                 .ForMember(x => x.Messages, y => y
-                                .MapFrom(z => z.Messages != null ? z.Messages.Select(x => x.Content) : new List<string>()))
+                    .MapFrom(z => z.Messages != null ? z.Messages.Select(x => x.Content) : new List<string>()))
                 .ForMember(x => x.Users, y => y
-                                .MapFrom(z => z.Users));
+                    .MapFrom(z => z.Users));
         }
     }
 }

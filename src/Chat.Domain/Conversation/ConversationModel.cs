@@ -7,9 +7,8 @@ namespace Chat.Domain.Conversation
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public required ICollection<MessageModel> Messages { get; init; }
+        public required ICollection<string> Messages { get; init; }
         public required ICollection<UserModel> Users { get; init; }
-
 
     }
 }

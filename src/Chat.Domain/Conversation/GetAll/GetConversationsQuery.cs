@@ -16,7 +16,8 @@ namespace Chat.Domain.Conversation.GetAll
         {
             return context.Conversations
                 .Where(c => c.Users.Any(u => u.Username == UserName))
-                .Include(x => x.Messages)
+                .Include(c => c.Messages).ThenInclude(m => m.Sender)
+                //.Include(c => c.Users)
                 .ToListAsync();
         }
     }

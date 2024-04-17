@@ -26,7 +26,7 @@ namespace Chat.Domain.Conversation.Add
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            ConversationEntity conversation = _mapper.Map<ConversationEntity>(request);
+            ConversationEntity conversation = _mapper.Map<ConversationEntity>(request);//tu jest problem
 
             var command = new AddConversationCommand()
             {

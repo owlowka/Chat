@@ -22,7 +22,7 @@ namespace Chat.Domain.Message.GetAll
         {
             var query = new GetMessagesQuery();
             List<MessageEntity> messages = await _queryExecutor.Execute(query);
-            if(messages == null)
+            if (messages == null)
             {
                 return new GetMessagesResponse()
                 {
