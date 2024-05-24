@@ -14,8 +14,23 @@ internal class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
+        //Aspire does not support service discovery for WebAssembly Blazor https://github.com/dotnet/aspire/issues/1659
+        //builder.Services.AddServiceDiscovery();
+
+        builder.Services.ConfigureHttpClientDefaults(http =>
+        {
+            // Turn on resilience by default
+            http.AddStandardResilienceHandler();
+
+            // Turn on service discovery by default
+            //http.AddServiceDiscovery();
+        });
+
         builder.Services.AddScoped(sp =>
-            new HttpClient { BaseAddress = new Uri("https://localhost:7011/") });
+            new HttpClient
+            {
+                BaseAddress = new Uri("https://localhost:7011")
+            });
         builder.Services.AddScoped<IChatService, HttpChatService>();
         builder.Services.AddFluentUIComponents();
 

@@ -30,6 +30,8 @@ using RestSharp;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Host.UseNLog();
 
 builder.Services
@@ -97,6 +99,8 @@ builder.Services.AddSwaggerGen();
 
 WebApplication? app = builder.Build();
 
+app.MapDefaultEndpoints();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -107,7 +111,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(policy =>
     policy
-        .WithOrigins("http://localhost:5222", "https://localhost:7106")
+        .AllowAnyOrigin()
+        //.WithOrigins("http://localhost:5222", "https://localhost:7106")
         .AllowAnyMethod()
         .WithHeaders(HeaderNames.ContentType));
 
@@ -209,7 +214,7 @@ app.Run();
 
 public class RandomNameGenerator
 {
-    public static readonly string[] Names = ["Roksana Duda", "Bob"];
+    public static readonly string[] Names = ["Roksana Duda", "Bob", "Alice"];
 
     public static string GenerateRandomName() => Random.Shared.GetItems(Names, 1)[0];
 }
