@@ -86,7 +86,7 @@ builder.Services.AddControllers();
 //1
 builder.AddCosmosDbContext<ChatStorageContext>("cosmos-db", "chat");
 //builder.Services.AddDbContext<ChatStorageContext>(options =>
-//    options.UseInMemoryDatabase("chatDatabase"));
+    //options.UseInMemoryDatabase("chatDatabase"));
 
 //2
 builder.Services.AddAuthorization();
@@ -143,77 +143,120 @@ app.UseAuthorization();
 //.RequireAuthorization();
 
 app.MapControllers();
-   //.RequireAuthorization();
 
+//.RequireAuthorization();
 
-
-
-await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
-{
-    ISender sender = scope.ServiceProvider.GetRequiredService<IMediator>();
-
-    IEnumerable<AddUserRequest> userRequests = RandomNameGenerator.Names
-        .Select(userName => new AddUserRequest
-        {
-            Username = userName,
-        });
-
-    //UserManager manager;
-
-    //Check Identity how to regiseter user
-
-    foreach (AddUserRequest? request in userRequests)
-    {
-        await sender.Send(request);
-    }
-
-    IEnumerable<AddMessageRequest> requests = Enumerable
-        .Range(0, 10)
-        .Select(i => new AddMessageRequest
-        {
-            Content = $"Test {i}",
-            Sender = RandomNameGenerator.GenerateRandomName(),
-            CreatedAt = DateTime.UtcNow
-        });
-
-    foreach (AddMessageRequest? request in requests)
-    {
-        await sender.Send(request);
-    }
-
-    IEnumerable<AddConversationRequest> conversationRequests = RandomNameGenerator.Names
-        .Select(userName => new AddConversationRequest
-        {
-            Name = userName,
-            Messages =
-            [
-                new MessageModel()
-                {
-                    Content = "Content",
-                    SenderName = userName,
-                    CreatedAt = DateTime.Now
-                }
-            ],
-            Users =
-            [
-                new UserModel
-                {
-                    Username = userName
-                },
-                new UserModel
-                {
-                    Username = "Roksana Duda"
-                }
-            ]
-        });
-
-    foreach (AddConversationRequest? request in conversationRequests)
-    {
-        await sender.Send(request);
-    }
-}
+await InitializeDatabase(app);
 
 app.Run();
+
+static async Task InitializeDatabase(WebApplication app)
+{
+    await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
+    {
+        DbContext context = scope.ServiceProvider.GetRequiredService<ChatStorageContext>();
+
+        var database = context.Database;
+
+        await WaitForEmulator(scope, database);
+
+        bool wasCreated = context.Database.EnsureCreated();
+
+        if (wasCreated is false)
+        {
+            return;
+        }
+
+        ISender sender = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+        IEnumerable<AddUserRequest> userRequests = RandomNameGenerator.Names
+            .Select(userName => new AddUserRequest
+            {
+                Username = userName,
+            });
+
+        //UserManager manager;
+
+        //Check Identity how to regiseter user
+
+        foreach (AddUserRequest? request in userRequests)
+        {
+            await sender.Send(request);
+        }
+
+        IEnumerable<AddMessageRequest> requests = Enumerable
+            .Range(0, 10)
+            .Select(i => new AddMessageRequest
+            {
+                Content = $"Test {i}",
+                Sender = RandomNameGenerator.GenerateRandomName(),
+                CreatedAt = DateTime.UtcNow
+            });
+
+        foreach (AddMessageRequest? request in requests)
+        {
+            await sender.Send(request);
+        }
+
+        IEnumerable<AddConversationRequest> conversationRequests = RandomNameGenerator.Names
+            .Select(userName => new AddConversationRequest
+            {
+                Name = userName,
+                Messages =
+                [
+                    new MessageModel()
+                    {
+                        Content = "Content",
+                        SenderName = userName,
+                        CreatedAt = DateTime.Now
+                    }
+                ],
+                Users =
+                [
+                    new UserModel
+                    {
+                        Username = userName
+                    },
+                    new UserModel
+                    {
+                        Username = "Roksana Duda"
+                    }
+                ]
+            });
+
+        foreach (AddConversationRequest? request in conversationRequests)
+        {
+            await sender.Send(request);
+        }
+    }
+
+    static async Task WaitForEmulator(AsyncServiceScope scope, Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade database)
+    {
+        if (database.IsCosmos())
+        {
+            var cosmosClient = database.GetCosmosClient();
+
+            ILogger logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+            bool retry = true;
+            do
+            {
+                logger.LogInformation("Waiting for database");
+
+                try
+                {
+                    var account = await cosmosClient.ReadAccountAsync();
+                    retry = false;
+                    logger.LogInformation("Database ready");
+                }
+                catch (Exception)
+                {
+                    await Task.Delay(1000);
+                }
+            } while (retry);
+        }
+    }
+}
 
 public class RandomNameGenerator
 {
