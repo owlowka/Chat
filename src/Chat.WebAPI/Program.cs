@@ -1,3 +1,4 @@
+using Aspire.Microsoft.EntityFrameworkCore.Cosmos;
 
 using Chat.ApplicationServices.Components.OpenWeather;
 using Chat.ApplicationServices.Components.OpenWeather.Configuration;
@@ -83,15 +84,17 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddControllers();
 
 //1
-builder.Services.AddDbContext<ChatStorageContext>(options =>
-    options.UseInMemoryDatabase("chatDatabase"));
+builder.AddCosmosDbContext<ChatStorageContext>("cosmos-db", "chat");
+//builder.Services.AddDbContext<ChatStorageContext>(options =>
+//    options.UseInMemoryDatabase("chatDatabase"));
+
 //2
 builder.Services.AddAuthorization();
 
 //3
-builder.Services
-    .AddIdentityApiEndpoints<IdentityUser<Guid>>()
-    .AddEntityFrameworkStores<ChatStorageContext>();
+//builder.Services
+//    .AddIdentityApiEndpoints<IdentityUser<Guid>>()
+//    .AddEntityFrameworkStores<ChatStorageContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -124,7 +127,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapIdentityApi<IdentityUser<Guid>>();
+//app.MapIdentityApi<IdentityUser<Guid>>();
 
 //app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
 //    [FromBody] object empty) =>
@@ -218,3 +221,7 @@ public class RandomNameGenerator
 
     public static string GenerateRandomName() => Random.Shared.GetItems(Names, 1)[0];
 }
+
+//What next? API must require Authentication Token
+//The token must be validated before particular request
+//GET/Conversation endpoint must requre token to validation

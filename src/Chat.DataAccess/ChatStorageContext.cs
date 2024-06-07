@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Chat.DataAccess
 {
-    public class ChatStorageContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
+    public class ChatStorageContext : DbContext// : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
         public ChatStorageContext(DbContextOptions<ChatStorageContext> options)
             : base(options)
