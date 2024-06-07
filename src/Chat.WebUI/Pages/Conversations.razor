@@ -9,7 +9,12 @@
 <div class="conversationsContainer">
     <FluentSearch @ref=_searchTest
                   @bind-Value="@_searchValue"
+                  @bind-Value:after=HandleSearchInput
                   Placeholder="Search for Conversations" />
+    <FluentListbox aria-label="search results"
+                   Items=@_searchResults
+                   TOption="string"
+                   SelectedOptionChanged="@(e => _searchValue = (e != _defaultResultsText ? e : string.Empty) )" />
     <p>You searched for: @_searchValue</p>
     
     <div class="conversationsList">
